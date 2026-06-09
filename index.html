@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ραφαέλα Τσονίδου — Κλινική Ψυχολόγος | Θεραπεία Σχημάτων</title>
+<meta name="description" content="Ραφαέλα Τσονίδου, κλινική ψυχολόγος & εκπαιδευόμενη ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Διαδικτυακές και δια ζώσης συνεδρίες ενηλίκων.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* palette drawn from the logo: sage-teal bird, soft taupe grounds, ink */
+    --teal:#5e8a7f;
+    --teal-deep:#3c5d56;
+    --teal-ink:#243b37;
+    --linen:#f3efe7;
+    --linen-warm:#ebe4d7;
+    --taupe:#c9bba6;
+    --ink:#22302c;
+    --paper:#fbf9f4;
+    --mist:#d9e2dd;
+    --rose:#9c5a63;            /* a single warm human accent, from the portraits' lipstick */
+
+    --ff-display:"Fraunces", Georgia, serif;
+    --ff-body:"Familjen Grotesk", system-ui, sans-serif;
+
+    --ease-out-expo:cubic-bezier(.16,1,.3,1);
+    --ease-soft:cubic-bezier(.4,0,.2,1);
+
+    --pad-section:clamp(4.5rem, 9vw, 9rem);
+    --container:1240px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{
+    font-family:var(--ff-body);
+    background:var(--paper);
+    color:var(--ink);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    line-height:1.6;
+  }
+  ::selection{background:var(--teal);color:var(--paper);}
+  ::-webkit-scrollbar{width:11px;}
+  ::-webkit-scrollbar-track{background:var(--linen);}
+  ::-webkit-scrollbar-thumb{background:var(--teal);border-radius:0;border:3px solid var(--linen);}
+  ::-webkit-scrollbar-thumb:hover{background:var(--teal-deep);}
+
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+
+  .container{max-width:var(--container);margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem);}
+
+  h1,h2,h3{font-family:var(--ff-display);font-weight:400;line-height:1.04;letter-spacing:-.01em;}
+  .eyebrow{
+    font-family:var(--ff-body);
+    font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
+    font-weight:600;color:var(--teal);
+    display:inline-flex;align-items:center;gap:.85rem;
+  }
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--teal);display:inline-block;}
+
+  /* ============ LOADER ============ */
+  #loader{
+    position:fixed;inset:0;z-index:9999;background:var(--teal-ink);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.6rem;
+    transition:opacity .9s var(--ease-soft),visibility .9s;
+  }
+  #loader.done{opacity:0;visibility:hidden;}
+  #loader svg{width:120px;height:auto;overflow:visible;}
+  #loader .bird path{
+    fill:none;stroke:var(--mist);stroke-width:3.4;
+    stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:1400;stroke-dashoffset:1400;
+    animation:draw 1.9s var(--ease-out-expo) forwards;
+  }
+  #loader .ld-name{
+    font-family:var(--ff-display);color:var(--paper);font-size:1.15rem;letter-spacing:.45em;
+    text-transform:uppercase;opacity:0;transform:translateY(10px);
+    animation:fadeUp .8s var(--ease-out-expo) 1.2s forwards;padding-left:.45em;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes fadeUp{to{opacity:1;transform:none;}}
+
+  /* ============ NAV ============ */
+  header{
+    position:fixed;top:0;left:0;width:100%;z-index:900;
+    transition:background .5s var(--ease-soft),box-shadow .5s,padding .5s;
+    padding:1.5rem 0;
+  }
+  header.scrolled{
+    background:rgba(251,249,244,.86);backdrop-filter:blur(14px);
+    box-shadow:0 1px 0 rgba(60,93,86,.12);padding:.85rem 0;
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:.7rem;}
+  .brand svg{width:38px;height:38px;transition:transform .5s var(--ease-out-expo);}
+  .brand:hover svg{transform:translateX(3px) rotate(-4deg);}
+  .brand-text{display:flex;flex-direction:column;line-height:1.05;}
+  .brand-text b{font-family:var(--ff-display);font-weight:500;font-size:1.08rem;color:var(--teal-ink);letter-spacing:.01em;}
+  .brand-text span{font-family:var(--ff-body);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);}
+  header:not(.scrolled) .brand-text b{color:var(--paper);}
+  header:not(.scrolled) .brand-text span{color:var(--mist);}
+  header:not(.scrolled) .brand svg path{stroke:var(--paper);}
+
+  nav ul{display:flex;align-items:center;gap:2.4rem;list-style:none;}
+  nav a{font-size:.86rem;letter-spacing:.02em;position:relative;font-weight:500;transition:color .3s;}
+  nav a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1.5px;background:currentColor;transition:width .35s var(--ease-out-expo);}
+  nav a:hover::after{width:100%;}
+  header:not(.scrolled) nav > ul > li > a{color:var(--paper);}
+  .nav-cta{
+    border:1.5px solid var(--teal);color:var(--teal)!important;
+    padding:.62rem 1.4rem;border-radius:100px;font-weight:600;
+    transition:background .35s var(--ease-soft),color .35s,border-color .35s;
+  }
+  .nav-cta::after{display:none;}
+  .nav-cta:hover{background:var(--teal);color:var(--paper)!important;}
+  header:not(.scrolled) .nav-cta{border-color:var(--mist);color:var(--paper)!important;}
+  header:not(.scrolled) .nav-cta:hover{background:var(--paper);color:var(--teal-ink)!important;border-color:var(--paper);}
+
+  .burger{display:none;width:30px;height:20px;position:relative;z-index:1001;}
+  .burger span{position:absolute;left:0;width:100%;height:2px;background:var(--teal-ink);transition:.4s var(--ease-out-expo);}
+  header:not(.scrolled) .burger span{background:var(--paper);}
+  .burger span:nth-child(1){top:0;}
+  .burger span:nth-child(2){top:9px;}
+  .burger span:nth-child(3){top:18px;}
+  body.menu-open .burger span{background:var(--paper);}
+  body.menu-open .burger span:nth-child(1){transform:translateY(9px) rotate(45deg);}
+  body.menu-open .burger span:nth-child(2){opacity:0;}
+  body.menu-open .burger span:nth-child(3){transform:translateY(-9px) rotate(-45deg);}
+
+  .mobile-menu{
+    position:fixed;inset:0;z-index:1000;background:var(--teal-ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;
+    opacity:0;visibility:hidden;transition:opacity .5s var(--ease-soft),visibility .5s;
+  }
+  body.menu-open .mobile-menu{opacity:1;visibility:visible;}
+  .mobile-menu a{
+    font-family:var(--ff-display);font-size:2rem;color:var(--paper);
+    opacity:0;transform:translateY(20px);transition:opacity .5s var(--ease-out-expo),transform .5s var(--ease-out-expo);
+  }
+  body.menu-open .mobile-menu a{opacity:1;transform:none;}
+  body.menu-open .mobile-menu a:nth-child(1){transition-delay:.12s;}
+  body.menu-open .mobile-menu a:nth-child(2){transition-delay:.18s;}
+  body.menu-open .mobile-menu a:nth-child(3){transition-delay:.24s;}
+  body.menu-open .mobile-menu a:nth-child(4){transition-delay:.30s;}
+  body.menu-open .mobile-menu a:nth-child(5){transition-delay:.36s;}
+  body.menu-open .mobile-menu a:nth-child(6){transition-delay:.42s;}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;min-height:100svh;display:flex;align-items:center;
+    background:var(--teal-ink);overflow:hidden;padding-top:6rem;
+  }
+  .hero-bg-bird{
+    position:absolute;right:-6%;top:50%;transform:translateY(-50%);
+    width:min(62vw,820px);opacity:.10;pointer-events:none;
+  }
+  .hero-bg-bird path{
+    fill:none;stroke:var(--mist);stroke-width:1.4;
+    stroke-dasharray:2600;stroke-dashoffset:2600;
+  }
+  body.loaded .hero-bg-bird path{animation:draw 3s var(--ease-out-expo) .3s forwards;}
+  .hero-glow{
+    position:absolute;width:60vw;height:60vw;max-width:760px;max-height:760px;
+    background:radial-gradient(circle,rgba(94,138,127,.55),transparent 62%);
+    top:-12%;left:-10%;filter:blur(20px);pointer-events:none;
+    animation:floatGlow 14s ease-in-out infinite;
+  }
+  @keyframes floatGlow{0%,100%{transform:translate(0,0);}50%{transform:translate(40px,30px);}}
+
+  .hero-inner{position:relative;z-index:3;width:100%;}
+  .hero h1{
+    color:var(--paper);
+    font-size:clamp(2.7rem,7.4vw,6.6rem);
+    font-weight:300;letter-spacing:-.025em;max-width:16ch;
+  }
+  .hero h1 em{font-style:italic;color:var(--teal);font-weight:400;}
+  .hero .line{display:block;overflow:hidden;}
+  .hero .line span{display:block;transform:translateY(110%);transition:transform 1.1s var(--ease-out-expo);}
+  body.loaded .hero .line span{transform:translateY(0);}
+  body.loaded .hero .line:nth-child(2) span{transition-delay:.13s;}
+  body.loaded .hero .line:nth-child(3) span{transition-delay:.26s;}
+
+  .hero-sub{
+    margin-top:2rem;color:var(--mist);font-size:clamp(1.02rem,1.6vw,1.22rem);
+    max-width:46ch;font-weight:400;line-height:1.65;
+    opacity:0;transform:translateY(18px);transition:.9s var(--ease-out-expo) .6s;
+  }
+  body.loaded .hero-sub{opacity:1;transform:none;}
+  .hero-actions{
+    margin-top:2.6rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;
+    opacity:0;transform:translateY(18px);transition:.9s var(--ease-out-expo) .78s;
+  }
+  body.loaded .hero-actions{opacity:1;transform:none;}
+  .btn-primary{
+    background:var(--teal);color:var(--paper);padding:1.02rem 2.2rem;border-radius:100px;
+    font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:.6rem;
+    transition:background .35s var(--ease-soft),transform .35s var(--ease-out-expo);
+  }
+  .btn-primary:hover{background:var(--paper);color:var(--teal-ink);transform:translateY(-3px);}
+  .btn-primary svg{width:16px;height:16px;transition:transform .35s var(--ease-out-expo);}
+  .btn-primary:hover svg{transform:translateX(4px);}
+  .btn-ghost{color:var(--paper);font-weight:500;font-size:.95rem;display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 0;border-bottom:1px solid rgba(217,226,221,.4);transition:border-color .3s;}
+  .btn-ghost:hover{border-color:var(--paper);}
+
+  .scroll-cue{
+    position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:4;
+    display:flex;flex-direction:column;align-items:center;gap:.6rem;
+    color:var(--mist);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;
+    opacity:0;transition:opacity 1s 1.4s;
+  }
+  body.loaded .scroll-cue{opacity:.8;}
+  .scroll-cue .dot{width:1px;height:46px;background:linear-gradient(var(--mist),transparent);position:relative;overflow:hidden;}
+  .scroll-cue .dot::after{content:"";position:absolute;top:0;left:0;width:100%;height:40%;background:var(--teal);animation:cueRun 2s ease-in-out infinite;}
+  @keyframes cueRun{0%{transform:translateY(-100%);}100%{transform:translateY(250%);}}
+
+  /* ============ MARQUEE ============ */
+  .marquee{background:var(--teal);color:var(--paper);overflow:hidden;padding:1.15rem 0;border-top:1px solid var(--teal-deep);}
+  .marquee-track{display:flex;width:max-content;animation:scrollX 38s linear infinite;}
+  .marquee:hover .marquee-track{animation-play-state:paused;}
+  .marquee-track span{font-family:var(--ff-display);font-style:italic;font-size:1.5rem;padding:0 1.6rem;white-space:nowrap;display:inline-flex;align-items:center;gap:1.6rem;}
+  .marquee-track span::after{content:"✦";font-style:normal;font-size:.7rem;color:var(--mist);}
+  @keyframes scrollX{to{transform:translateX(-50%);}}
+
+  /* ============ ABOUT ============ */
+  .about{padding:var(--pad-section) 0;background:var(--paper);}
+  .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2.5rem,6vw,6rem);align-items:center;}
+  .about-media{position:relative;}
+  .about-media .frame{
+    position:relative;border-radius:6px 6px 120px 6px;overflow:hidden;
+    box-shadow:0 30px 70px -30px rgba(36,59,55,.45);
+  }
+  .about-media img{width:100%;height:auto;transition:transform 1.4s var(--ease-out-expo);}
+  .about-media:hover img{transform:scale(1.04);}
+  .about-media .badge{
+    position:absolute;bottom:-26px;left:-26px;background:var(--teal-ink);color:var(--paper);
+    padding:1.5rem 1.7rem;border-radius:4px;max-width:200px;
+    box-shadow:0 20px 50px -20px rgba(36,59,55,.6);
+  }
+  .about-media .badge b{font-family:var(--ff-display);font-size:2.4rem;font-weight:400;display:block;line-height:1;color:var(--teal);}
+  .about-media .badge small{font-size:.74rem;letter-spacing:.04em;color:var(--mist);line-height:1.4;display:block;margin-top:.45rem;}
+  .about h2{font-size:clamp(2rem,4.2vw,3.4rem);margin:1.4rem 0 1.6rem;color:var(--teal-ink);max-width:18ch;}
+  .about p{color:#4a5a55;margin-bottom:1.15rem;font-size:1.04rem;max-width:54ch;}
+  .pull-quote{
+    font-family:var(--ff-display);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.7rem);
+    color:var(--teal-deep);line-height:1.35;margin:2rem 0;padding-left:1.5rem;
+    border-left:2px solid var(--teal);max-width:30ch;
+  }
+  .credentials{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem;}
+  .credentials span{font-size:.78rem;letter-spacing:.04em;padding:.5rem 1rem;border:1px solid var(--taupe);border-radius:100px;color:var(--teal-deep);background:var(--linen);}
+
+  /* ============ EXPERTISE / SERVICES ============ */
+  .services{padding:var(--pad-section) 0;background:var(--linen);position:relative;}
+  .sec-head{max-width:620px;margin-bottom:clamp(2.5rem,5vw,4rem);}
+  .sec-head h2{font-size:clamp(2rem,4.4vw,3.5rem);color:var(--teal-ink);margin-top:1.2rem;}
+  .sec-head p{margin-top:1.1rem;color:#566;font-size:1.05rem;}
+  .svc-list{border-top:1px solid var(--taupe);}
+  .svc-item{border-bottom:1px solid var(--taupe);overflow:hidden;}
+  .svc-trigger{
+    width:100%;display:flex;align-items:center;gap:1.4rem;padding:1.7rem .5rem;text-align:left;
+    transition:padding-left .4s var(--ease-out-expo),color .3s;
+  }
+  .svc-trigger:hover{padding-left:1.3rem;color:var(--teal);}
+  .svc-num{font-family:var(--ff-body);font-size:.78rem;font-weight:600;color:var(--teal);letter-spacing:.1em;width:2.4rem;flex-shrink:0;}
+  .svc-title{font-family:var(--ff-display);font-size:clamp(1.25rem,2.6vw,1.85rem);font-weight:400;flex:1;color:var(--teal-ink);transition:color .3s;}
+  .svc-trigger:hover .svc-title{color:var(--teal);}
+  .svc-plus{width:24px;height:24px;flex-shrink:0;position:relative;}
+  .svc-plus::before,.svc-plus::after{content:"";position:absolute;background:var(--teal);transition:transform .4s var(--ease-out-expo),opacity .3s;}
+  .svc-plus::before{top:50%;left:0;width:100%;height:1.5px;transform:translateY(-50%);}
+  .svc-plus::after{left:50%;top:0;height:100%;width:1.5px;transform:translateX(-50%);}
+  .svc-item.open .svc-plus::after{transform:translateX(-50%) scaleY(0);opacity:0;}
+  .svc-body{max-height:0;overflow:hidden;transition:max-height .55s var(--ease-out-expo);}
+  .svc-body-inner{padding:0 .5rem 1.9rem 4.2rem;color:#4a5a55;max-width:62ch;font-size:1.02rem;}
+  .svc-meta{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;font-size:.8rem;letter-spacing:.05em;color:var(--teal);font-weight:600;}
+  .svc-meta::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);}
+
+  /* ============ PROCESS ============ */
+  .process{padding:var(--pad-section) 0;background:var(--teal-ink);color:var(--paper);position:relative;overflow:hidden;}
+  .process .hero-glow{opacity:.5;animation-duration:18s;}
+  .process .eyebrow{color:var(--mist);}
+  .process .eyebrow::before{background:var(--mist);}
+  .process h2{color:var(--paper);font-size:clamp(2rem,4.4vw,3.5rem);margin-top:1.2rem;max-width:16ch;}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;margin-top:clamp(2.6rem,5vw,4rem);position:relative;z-index:2;}
+  .step{position:relative;padding-top:2.2rem;}
+  .step .line{position:absolute;top:0;left:0;width:100%;height:1px;background:rgba(217,226,221,.28);}
+  .step .line::before{content:"";position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;background:var(--teal);}
+  .step b{font-family:var(--ff-display);font-size:2.6rem;font-weight:300;color:var(--teal);display:block;line-height:1;}
+  .step h3{font-size:1.2rem;margin:.9rem 0 .6rem;color:var(--paper);font-weight:500;}
+  .step p{color:var(--mist);font-size:.95rem;line-height:1.6;}
+
+  /* ============ VALUES ============ */
+  .values{padding:var(--pad-section) 0;background:var(--paper);}
+  .val-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:clamp(2.4rem,5vw,3.6rem);}
+  .val-card{
+    background:var(--linen);padding:2.3rem 2rem;border-radius:4px;position:relative;overflow:hidden;
+    border:1px solid transparent;transition:transform .5s var(--ease-out-expo),border-color .5s,background .5s;
+  }
+  .val-card::before{content:"";position:absolute;top:0;left:0;width:0;height:3px;background:var(--teal);transition:width .5s var(--ease-out-expo);}
+  .val-card:hover{transform:translateY(-7px);border-color:var(--taupe);background:var(--paper);box-shadow:0 24px 50px -28px rgba(36,59,55,.3);}
+  .val-card:hover::before{width:100%;}
+  .val-icon{width:42px;height:42px;color:var(--teal);margin-bottom:1.3rem;}
+  .val-card h3{font-size:1.3rem;color:var(--teal-ink);margin-bottom:.7rem;font-weight:500;}
+  .val-card p{color:#566;font-size:.97rem;line-height:1.62;}
+
+  /* ============ REVIEWS ============ */
+  .reviews{padding:var(--pad-section) 0;background:var(--linen-warm);overflow:hidden;}
+  .rev-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.6rem;}
+  .rev-score{display:flex;align-items:center;gap:1rem;}
+  .rev-score b{font-family:var(--ff-display);font-size:3.4rem;font-weight:400;color:var(--teal-ink);line-height:1;}
+  .rev-score .stars{display:flex;flex-direction:column;gap:.2rem;}
+  .rev-score .stars div{color:var(--teal);letter-spacing:.1em;font-size:.9rem;}
+  .rev-score .stars small{color:#677;font-size:.78rem;}
+  .rev-controls{display:flex;gap:.7rem;}
+  .rev-controls button{width:48px;height:48px;border:1.5px solid var(--taupe);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--teal-deep);transition:background .35s,color .35s,border-color .35s;}
+  .rev-controls button:hover{background:var(--teal);color:var(--paper);border-color:var(--teal);}
+  .rev-controls svg{width:18px;height:18px;}
+  .rev-viewport{overflow:hidden;}
+  .rev-track{display:flex;gap:1.5rem;transition:transform .65s var(--ease-out-expo);}
+  .rev-card{
+    flex:0 0 clamp(280px,42%,420px);background:var(--paper);border-radius:6px;padding:2.2rem 2rem;
+    border:1px solid var(--taupe);display:flex;flex-direction:column;
+  }
+  .rev-card .quote-mark{font-family:var(--ff-display);font-size:3rem;color:var(--teal);line-height:.5;height:1.2rem;}
+  .rev-text{color:#3f4f4a;font-size:1rem;line-height:1.65;margin:1.2rem 0 1.3rem;flex:1;}
+  .rev-text.clamp{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;}
+  .rev-more{font-size:.8rem;font-weight:600;color:var(--teal);letter-spacing:.04em;align-self:flex-start;margin-bottom:1.1rem;border-bottom:1px solid var(--teal);}
+  .rev-author{display:flex;align-items:center;gap:.85rem;margin-top:auto;}
+  .rev-author .av{width:42px;height:42px;border-radius:50%;background:var(--teal);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:1.1rem;flex-shrink:0;}
+  .rev-author b{display:block;font-size:.95rem;color:var(--teal-ink);font-weight:600;}
+  .rev-author small{color:#788;font-size:.78rem;}
+  .rev-footer{margin-top:2.4rem;}
+  .rev-footer a{font-size:.88rem;color:var(--teal-deep);font-weight:600;border-bottom:1px solid var(--taupe);transition:border-color .3s;}
+  .rev-footer a:hover{border-color:var(--teal-deep);}
+
+  /* ============ FAQ ============ */
+  .faq{padding:var(--pad-section) 0;background:var(--paper);}
+  .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,5vw,5rem);align-items:start;}
+  .faq-list{border-top:1px solid var(--taupe);}
+  .faq-item{border-bottom:1px solid var(--taupe);}
+  .faq-q{width:100%;text-align:left;display:flex;gap:1.2rem;align-items:center;padding:1.5rem 0;font-family:var(--ff-display);font-size:clamp(1.1rem,2vw,1.35rem);color:var(--teal-ink);font-weight:400;}
+  .faq-q .ic{margin-left:auto;width:20px;height:20px;flex-shrink:0;position:relative;transition:transform .4s var(--ease-out-expo);}
+  .faq-q .ic::before,.faq-q .ic::after{content:"";position:absolute;background:var(--teal);}
+  .faq-q .ic::before{top:50%;left:0;width:100%;height:1.5px;transform:translateY(-50%);}
+  .faq-q .ic::after{left:50%;top:0;height:100%;width:1.5px;transform:translateX(-50%);transition:transform .4s var(--ease-out-expo);}
+  .faq-item.open .faq-q .ic::after{transform:translateX(-50%) scaleY(0);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out-expo);}
+  .faq-a p{padding:0 0 1.6rem;color:#4a5a55;max-width:60ch;font-size:1.02rem;line-height:1.65;}
+  .faq-aside h2{font-size:clamp(1.8rem,3.6vw,2.8rem);color:var(--teal-ink);margin-top:1rem;}
+
+  /* ============ CONTACT ============ */
+  .contact{padding:var(--pad-section) 0;background:var(--teal-ink);color:var(--paper);position:relative;overflow:hidden;}
+  .contact .hero-glow{opacity:.45;left:auto;right:-10%;top:auto;bottom:-20%;animation-duration:20s;}
+  .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2.5rem,6vw,6rem);position:relative;z-index:2;align-items:center;}
+  .contact h2{color:var(--paper);font-size:clamp(2.2rem,5vw,4rem);font-weight:300;letter-spacing:-.02em;max-width:13ch;}
+  .contact h2 em{font-style:italic;color:var(--teal);}
+  .contact p.lead{color:var(--mist);margin-top:1.5rem;max-width:42ch;font-size:1.08rem;line-height:1.65;}
+  .contact-cta{margin-top:2.4rem;}
+  .contact-card{background:rgba(251,249,244,.06);border:1px solid rgba(217,226,221,.2);border-radius:8px;padding:2.4rem;backdrop-filter:blur(6px);}
+  .c-row{display:flex;align-items:center;gap:1.1rem;padding:1.15rem 0;border-bottom:1px solid rgba(217,226,221,.16);transition:padding-left .35s var(--ease-out-expo);}
+  .c-row:last-child{border-bottom:none;}
+  .c-row:hover{padding-left:.6rem;}
+  .c-row .ic{width:44px;height:44px;border-radius:50%;border:1px solid rgba(217,226,221,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--teal);transition:background .35s,color .35s;}
+  .c-row:hover .ic{background:var(--teal);color:var(--paper);}
+  .c-row .ic svg{width:19px;height:19px;}
+  .c-row small{display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:.2rem;}
+  .c-row b{font-weight:500;font-size:1.02rem;color:var(--paper);word-break:break-word;}
+  .contact-tags{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.8rem;}
+  .contact-tags span{font-size:.76rem;padding:.5rem 1rem;border:1px solid rgba(217,226,221,.3);border-radius:100px;color:var(--mist);}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--teal-ink);color:var(--mist);padding:2.4rem 0;border-top:1px solid rgba(217,226,221,.14);}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.82rem;}
+  .foot-inner a{color:var(--paper);font-weight:600;border-bottom:1px solid var(--teal);transition:border-color .3s;}
+  .foot-inner a:hover{border-color:var(--paper);}
+  .foot-license{opacity:.7;font-size:.74rem;}
+
+  /* ============ REVEAL ============ */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease-out-expo),transform .9s var(--ease-out-expo);}
+  .reveal.in{opacity:1;transform:none;}
+  .reveal.d1{transition-delay:.1s;}
+  .reveal.d2{transition-delay:.2s;}
+  .reveal.d3{transition-delay:.3s;}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:980px){
+    .about-grid,.faq-grid,.contact-grid{grid-template-columns:1fr;}
+    .steps,.val-grid{grid-template-columns:1fr 1fr;}
+    .about-media{max-width:460px;margin:0 auto;}
+    .about-media .badge{left:0;}
+    .faq-aside{order:-1;}
+  }
+  @media(max-width:680px){
+    nav ul{display:none;}
+    .burger{display:block;}
+    .steps,.val-grid{grid-template-columns:1fr;}
+    .rev-card{flex:0 0 84%;}
+    .rev-top{align-items:center;}
+    .svc-body-inner{padding-left:.5rem;}
+    .hero h1{letter-spacing:-.02em;}
+    .about-media .badge{padding:1.1rem 1.2rem;}
+    .about-media .badge b{font-size:1.9rem;}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;}
+    .hero .line span{transform:none;}
+    .reveal{opacity:1;transform:none;}
+    #loader .bird path{stroke-dashoffset:0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== LOADER ===== -->
+<div id="loader" aria-hidden="true">
+  <svg class="bird" viewBox="0 0 120 90" fill="none">
+    <path d="M6 60 C28 34 50 26 74 30 C58 38 50 48 48 60 C66 44 92 36 116 30 C92 44 70 54 50 78"/>
+  </svg>
+  <div class="ld-name">Ραφαέλα Τσονίδου</div>
+</div>
+
+<!-- ===== HEADER / NAV ===== -->
+<header id="header">
+  <div class="container nav-inner">
+    <a href="#top" class="brand" aria-label="Ραφαέλα Τσονίδου — Αρχική">
+      <svg viewBox="0 0 120 90" fill="none" aria-hidden="true">
+        <path d="M6 60 C28 34 50 26 74 30 C58 38 50 48 48 60 C66 44 92 36 116 30 C92 44 70 54 50 78" stroke="#5e8a7f" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-text"><b>Ραφαέλα Τσονίδου</b><span>Κλινική Ψυχολόγος</span></span>
+    </a>
+    <nav aria-label="Κύρια πλοήγηση">
+      <ul>
+        <li><a href="#about">Γνωριμία</a></li>
+        <li><a href="#services">Υπηρεσίες</a></li>
+        <li><a href="#process">Διαδικασία</a></li>
+        <li><a href="#reviews">Μαρτυρίες</a></li>
+        <li><a href="#contact" class="nav-cta">Κλείστε ραντεβού</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Άνοιγμα μενού" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">Γνωριμία</a>
+  <a href="#services">Υπηρεσίες</a>
+  <a href="#process">Διαδικασία</a>
+  <a href="#values">Φιλοσοφία</a>
+  <a href="#reviews">Μαρτυρίες</a>
+  <a href="#contact">Κλείστε ραντεβού</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="hero-glow"></div>
+  <svg class="hero-bg-bird" viewBox="0 0 120 90" fill="none" aria-hidden="true">
+    <path d="M6 60 C28 34 50 26 74 30 C58 38 50 48 48 60 C66 44 92 36 116 30 C92 44 70 54 50 78"/>
+  </svg>
+  <div class="container hero-inner">
+    <h1>
+      <span class="line"><span>Χώρος να</span></span>
+      <span class="line"><span><em>αναπνεύσεις</em>,</span></span>
+      <span class="line"><span>να ξεκινήσεις ξανά.</span></span>
+    </h1>
+    <p class="hero-sub">Κλινική ψυχολόγος και εκπαιδευόμενη ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Ατομικές συνεδρίες ενηλίκων, διαδικτυακά ή δια ζώσης — σε ένα πλαίσιο ασφάλειας, εμπιστοσύνης και ουσιαστικής αλλαγής.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Κλείστε ραντεβού
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#about" class="btn-ghost">Γνωρίστε με</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Κύλιση</span><span class="dot"></span></div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Θεραπεία Σχημάτων</span><span>Άγχος &amp; Στρες</span><span>Κατάθλιψη</span><span>Κρίσεις Πανικού</span><span>Ατομική Ψυχοθεραπεία</span><span>Φοβίες</span>
+    <span>Θεραπεία Σχημάτων</span><span>Άγχος &amp; Στρες</span><span>Κατάθλιψη</span><span>Κρίσεις Πανικού</span><span>Ατομική Ψυχοθεραπεία</span><span>Φοβίες</span>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-media reveal">
+      <div class="frame">
+        <img src="https://raw.githubusercontent.com/agelmet/TSONIDOU/refs/heads/main/DSC_0733.jpg" alt="Η Ραφαέλα Τσονίδου, κλινική ψυχολόγος" loading="lazy">
+      </div>
+      <div class="badge">
+        <b>10.0</b>
+        <small>Μέση βαθμολογία από 14 αξιολογήσεις ασθενών</small>
+      </div>
+    </div>
+    <div class="about-copy">
+      <span class="eyebrow reveal">Γνωριμία</span>
+      <h2 class="reveal d1">Η θεραπεία ξεκινά από τη σχέση εμπιστοσύνης.</h2>
+      <p class="reveal d1">Είμαι η Ραφαέλα Τσονίδου, κλινική ψυχολόγος και εκπαιδευόμενη ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Πραγματοποιώ κυρίως διαδικτυακές ατομικές συνεδρίες με ενήλικες, ενώ οι συνεδρίες μπορούν να γίνουν και δια ζώσης κατόπιν συνεννόησης.</p>
+      <p class="reveal d2">Είμαι απόφοιτη του Τμήματος Ψυχολογίας του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης και του Μεταπτυχιακού Προγράμματος Κλινικής Ψυχολογίας του Εθνικού και Καποδιστριακού Πανεπιστημίου Αθηνών. Έχω συνεργαστεί με δημόσιους φορείς ψυχικής υγείας — το Αιγινήτειο Νοσοκομείο και τον ΟΚΑΝΑ — μέσα από τα προγράμματα απεξάρτησης «Αθηνά» για ενήλικες και τη Μονάδα Εφήβων «Ατραπός».</p>
+      <blockquote class="pull-quote reveal d2">«Παρακολουθώ σταθερά σεμινάρια και συνέδρια, με στόχο τη συνεχή επιμόρφωση και την ποιότητα στη φροντίδα.»</blockquote>
+      <div class="credentials reveal d3">
+        <span>MSc Κλινικής Ψυχολογίας (ΕΚΠΑ)</span>
+        <span>BSc Ψυχολογίας (ΑΠΘ)</span>
+        <span>Θεραπεία Σχημάτων</span>
+        <span>Αρ. αδείας 384604</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES / EXPERTISE ===== -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Υπηρεσίες</span>
+      <h2>Σε τι μπορώ να σταθώ δίπλα σας</h2>
+      <p>Κάθε συνεδρία διαρκεί 50 λεπτά και προσαρμόζεται στο δικό σας περιστατικό. Τα κόστη είναι ενδεικτικά και επιβεβαιώνονται κατά την επικοινωνία μας.</p>
+    </div>
+    <div class="svc-list">
+      <div class="svc-item reveal">
+        <button class="svc-trigger" aria-expanded="false">
+          <span class="svc-num">01</span>
+          <span class="svc-title">Ατομική ψυχοθεραπεία ενηλίκων</span>
+          <span class="svc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="svc-body"><div class="svc-body-inner">
+          Ένα σταθερό, εμπιστευτικό πλαίσιο για να επεξεργαστείτε όσα σας απασχολούν και να χτίσετε πιο λειτουργικούς τρόπους να σχετίζεστε με τον εαυτό σας και τους άλλους. Οι συνεδρίες πραγματοποιούνται διαδικτυακά ή δια ζώσης.
+          <span class="svc-meta">Ατομική συνεδρία · 50 λεπτά</span>
+        </div></div>
+      </div>
+      <div class="svc-item reveal">
+        <button class="svc-trigger" aria-expanded="false">
+          <span class="svc-num">02</span>
+          <span class="svc-title">Θεραπεία Σχημάτων</span>
+          <span class="svc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="svc-body"><div class="svc-body-inner">
+          Μια ολοκληρωμένη προσέγγιση που εντοπίζει τα βαθιά, επαναλαμβανόμενα μοτίβα που διαμορφώθηκαν νωρίς στη ζωή και επηρεάζουν το παρόν. Δουλεύουμε ώστε να κατανοήσετε την προέλευσή τους και να αλλάξετε τον τρόπο που σας επηρεάζουν σήμερα.
+          <span class="svc-meta">Εξειδικευμένη προσέγγιση · 50 λεπτά</span>
+        </div></div>
+      </div>
+      <div class="svc-item reveal">
+        <button class="svc-trigger" aria-expanded="false">
+          <span class="svc-num">03</span>
+          <span class="svc-title">Διαχείριση άγχους &amp; στρες</span>
+          <span class="svc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="svc-body"><div class="svc-body-inner">
+          Συμβουλευτική και θεραπευτική υποστήριξη για το άγχος, το στρες της καθημερινότητας και τη συναισθηματική υπερφόρτωση, με πρακτικά εργαλεία και βαθύτερη κατανόηση των αιτιών.
+          <span class="svc-meta">Συμβουλευτική · 50 λεπτά</span>
+        </div></div>
+      </div>
+      <div class="svc-item reveal">
+        <button class="svc-trigger" aria-expanded="false">
+          <span class="svc-num">04</span>
+          <span class="svc-title">Κρίσεις πανικού &amp; φοβίες</span>
+          <span class="svc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="svc-body"><div class="svc-body-inner">
+          Στοχευμένη δουλειά για τις κρίσεις πανικού και τις φοβίες, ώστε να ανακτήσετε αίσθηση ελέγχου και ασφάλειας στις καταστάσεις που σήμερα σας περιορίζουν.
+          <span class="svc-meta">Ατομική συνεδρία · 50 λεπτά</span>
+        </div></div>
+      </div>
+      <div class="svc-item reveal">
+        <button class="svc-trigger" aria-expanded="false">
+          <span class="svc-num">05</span>
+          <span class="svc-title">Κατάθλιψη &amp; διάθεση</span>
+          <span class="svc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="svc-body"><div class="svc-body-inner">
+          Υποστήριξη για περιόδους κατάθλιψης και χαμηλής διάθεσης, με σεβασμό στον δικό σας ρυθμό και έμφαση στην επανασύνδεση με ό,τι έχει νόημα για εσάς.
+          <span class="svc-meta">Ατομική συνεδρία · 50 λεπτά</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="process" id="process">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="sec-head reveal" style="margin-bottom:0">
+      <span class="eyebrow">Η διαδικασία</span>
+      <h2>Απλή αρχή, ουσιαστική πορεία</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="line"></div><b>01</b><h3>Επικοινωνία</h3><p>Μου γράφετε ή τηλεφωνείτε για ένα πρώτο, ανεπίσημο μήνυμα γνωριμίας και τις απορίες σας.</p></div>
+      <div class="step reveal d1"><div class="line"></div><b>02</b><h3>Πρώτη συνεδρία</h3><p>Συναντιόμαστε διαδικτυακά ή δια ζώσης για να γνωριστούμε και να εντοπίσουμε μαζί τι σας φέρνει εδώ.</p></div>
+      <div class="step reveal d2"><div class="line"></div><b>03</b><h3>Κοινός σχεδιασμός</h3><p>Θέτουμε στόχους και επιλέγουμε την προσέγγιση που ταιριάζει σε εσάς και στο περιστατικό σας.</p></div>
+      <div class="step reveal d3"><div class="line"></div><b>04</b><h3>Πορεία αλλαγής</h3><p>Δουλεύουμε σταθερά, με τον δικό σας ρυθμό, προς πιο λειτουργικούς και ελεύθερους τρόπους ζωής.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VALUES ===== -->
+<section class="values" id="values">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Φιλοσοφία</span>
+      <h2>Πώς δουλεύω</h2>
+    </div>
+    <div class="val-grid">
+      <div class="val-card reveal">
+        <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.6-9.3-9.2C1 8.4 3 5 6.5 5 9 5 12 8 12 8s3-3 5.5-3C21 5 23 8.4 21.3 11.8 19 16.4 12 21 12 21z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Ασφάλεια &amp; εμπιστοσύνη</h3>
+        <p>Ένας χώρος χωρίς κριτική, όπου μπορείτε να εκφραστείτε ανοιχτά. Πολλοί θεραπευόμενοι περιγράφουν αίσθηση ασφάλειας από την πρώτη κιόλας συνεδρία.</p>
+      </div>
+      <div class="val-card reveal d1">
+        <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7" stroke-linecap="round"/></svg>
+        <h3>Ενσυναίσθηση</h3>
+        <p>Σας ακούω χωρίς βιασύνη και χωρίς υποδείξεις. Η κατανόηση της δικής σας εμπειρίας είναι η αφετηρία κάθε ουσιαστικής δουλειάς.</p>
+      </div>
+      <div class="val-card reveal d2">
+        <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3" stroke-linecap="round"/></svg>
+        <h3>Επιστημονική βάση</h3>
+        <p>Συνεχής εκπαίδευση, σεμινάρια και συνέδρια. Η πρακτική μου στηρίζεται σε τεκμηριωμένες, σύγχρονες θεραπευτικές προσεγγίσεις.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="rev-top reveal">
+      <div>
+        <span class="eyebrow">Μαρτυρίες</span>
+        <div class="rev-score" style="margin-top:1.2rem">
+          <b>10.0</b>
+          <div class="stars">
+            <div>★★★★★</div>
+            <small>14 αξιολογήσεις ασθενών</small>
+          </div>
+        </div>
+      </div>
+      <div class="rev-controls">
+        <button id="revPrev" aria-label="Προηγούμενη μαρτυρία"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button id="revNext" aria-label="Επόμενη μαρτυρία"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+
+    <div class="rev-viewport reveal d1">
+      <div class="rev-track" id="revTrack">
+        <article class="rev-card">
+          <div class="quote-mark">”</div>
+          <p class="rev-text clamp">Δεν θα μπορούσα να φανταστώ μια καλύτερη επιλογή, σε όλο αυτό το ταξίδι αναζήτησης, αμφισβήτησης και επαναπροσδιορισμού! Σ' ευχαριστώ για όλα αυτά που ανακαλύπτουμε παρέα. Είσαι το καλύτερο δώρο που έχω κάνει στον εαυτό μου.</p>
+          <button class="rev-more">Διαβάστε περισσότερα</button>
+          <div class="rev-author"><span class="av">Α</span><div><b>Αναστασία</b><small>Φεβρουάριος 2024</small></div></div>
+        </article>
+        <article class="rev-card">
+          <div class="quote-mark">”</div>
+          <p class="rev-text clamp">Ένιωσα να φεύγει ένα βάρος από επάνω μου. Κατάλαβα ότι δεν φταίω εγώ για όλα τα κακά που συμβαίνουν δίπλα μου. Ευχαριστώ πολύ την ψυχολόγο μου!</p>
+          <button class="rev-more">Διαβάστε περισσότερα</button>
+          <div class="rev-author"><span class="av">Δ</span><div><b>Δημήτριος</b><small>Δεκέμβριος 2023</small></div></div>
+        </article>
+        <article class="rev-card">
+          <div class="quote-mark">”</div>
+          <p class="rev-text clamp">Με έκανε να αισθανθώ ασφαλής και ότι μπορώ να την εμπιστευτώ. Επικεντρώθηκε αμέσως στο πρόβλημά μου και μου έδωσε τις απαντήσεις που θα με βοηθήσουν να το αντιμετωπίσω.</p>
+          <button class="rev-more">Διαβάστε περισσότερα</button>
+          <div class="rev-author"><span class="av">Ι</span><div><b>Ιορδάνης</b><small>Δεκέμβριος 2023</small></div></div>
+        </article>
+        <article class="rev-card">
+          <div class="quote-mark">”</div>
+          <p class="rev-text clamp">Θα ήθελα να εκφράσω την απόλυτή μου ευγνωμοσύνη στην κυρία Τσονίδου που με υποστήριξε σε οικογενειακά θέματα και προβλήματα άγχους. Ο επαγγελματισμός της ήταν εμφανής, παρέχοντας μια ασφαλή ατμόσφαιρα όπου μπορούσα να εκφράσω ανοιχτά τις σκέψεις μου. Η ενσυναίσθησή της έκανε τη διαδικασία πολύ πιο ανεκτή και από την πρώτη συνεδρία με έκανε να αισθανθώ άνετα. Οι στοχευμένες λύσεις της με βοήθησαν να κατανοήσω και να αντιμετωπίσω αποτελεσματικά τα προβλήματά μου.</p>
+          <button class="rev-more">Διαβάστε περισσότερα</button>
+          <div class="rev-author"><span class="av">Χ</span><div><b>Χρήστος</b><small>Δεκέμβριος 2023</small></div></div>
+        </article>
+        <article class="rev-card">
+          <div class="quote-mark">”</div>
+          <p class="rev-text clamp">Ηρεμία και ασφάλεια από την πρώτη συνεδρία. Εντυπωσιακός επαγγελματισμός και ποιότητα των συνεδριών. Έμεινα απόλυτα ικανοποιημένη!</p>
+          <button class="rev-more">Διαβάστε περισσότερα</button>
+          <div class="rev-author"><span class="av">Ε</span><div><b>Ειρήνη</b><small>Δεκέμβριος 2023</small></div></div>
+        </article>
+        <article class="rev-card">
+          <div class="quote-mark">”</div>
+          <p class="rev-text clamp">Η κα Τσονίδου με βοήθησε πολύ! Έχει ενσυναίσθηση και ένιωσα από πολύ νωρίς ότι με καταλαβαίνει και με στηρίζει! Σίγουρα την συστήνω!</p>
+          <button class="rev-more">Διαβάστε περισσότερα</button>
+          <div class="rev-author"><span class="av">Β</span><div><b>Βασιλική</b><small>Δεκέμβριος 2023</small></div></div>
+        </article>
+        <article class="rev-card">
+          <div class="quote-mark">”</div>
+          <p class="rev-text clamp">Εξαιρετικός άνθρωπος και φυσικά επιστήμονας! Σε κάνει να νιώσεις άνετα από την πρώτη στιγμή. Συνδυάζει άρτιες γνώσεις, επικοινωνιακές δεξιότητες και βαθιά ενσυναίσθηση. Η συνεργασία μου μαζί της έφερε σημαντικές αλλαγές στον τρόπο ζωής μου, γι' αυτό και την συνιστώ ανεπιφύλακτα!</p>
+          <button class="rev-more">Διαβάστε περισσότερα</button>
+          <div class="rev-author"><span class="av">Γ</span><div><b>Γεωργία</b><small>Νοέμβριος 2023</small></div></div>
+        </article>
+      </div>
+    </div>
+
+    <div class="rev-footer reveal">
+      <a href="https://www.doctoranytime.gr/d/Psychologos/tsonidou-rafaela#review-section" target="_blank" rel="noopener">Δείτε και τις 14 αξιολογήσεις στο doctoranytime →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq" id="faq">
+  <div class="container faq-grid">
+    <div class="faq-aside reveal">
+      <span class="eyebrow">Συχνές ερωτήσεις</span>
+      <h2>Ό,τι καλό είναι να ξέρετε πριν ξεκινήσουμε.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">Οι συνεδρίες γίνονται διαδικτυακά ή δια ζώσης;<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Πραγματοποιώ κυρίως διαδικτυακές ατομικές συνεδρίες με ενήλικες. Οι συνεδρίες μπορούν να γίνουν και δια ζώσης, κατόπιν συνεννόησης μαζί μου.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">Πόσο διαρκεί μια συνεδρία;<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Κάθε συνεδρία διαρκεί 50 λεπτά, είτε πραγματοποιείται διαδικτυακά μέσω βιντεοκλήσης είτε δια ζώσης.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">Σε ποιους απευθύνεστε;<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Σε ενήλικες που επιθυμούν ατομική ψυχοθεραπεία ή συμβουλευτική υποστήριξη — για άγχος και στρες, κατάθλιψη, κρίσεις πανικού, φοβίες, ή για ευρύτερη επεξεργασία των μοτίβων που τους επηρεάζουν.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">Τι είναι η Θεραπεία Σχημάτων;<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Είναι μια ολοκληρωμένη θεραπευτική προσέγγιση που εντοπίζει βαθιά, επαναλαμβανόμενα μοτίβα — τα «σχήματα» — που διαμορφώθηκαν νωρίς στη ζωή και επηρεάζουν τον τρόπο που σκεφτόμαστε, νιώθουμε και σχετιζόμαστε σήμερα.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">Πώς κλείνω το πρώτο μου ραντεβού;<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Επικοινωνήστε μαζί μου τηλεφωνικά στο 698 457 7414 ή με email στο rafaelatsonidou@yahoo.gr. Θα κανονίσουμε μαζί την ημέρα και τον τρόπο της πρώτης μας συνεδρίας.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="hero-glow"></div>
+  <div class="container contact-grid">
+    <div class="reveal">
+      <span class="eyebrow">Επικοινωνία</span>
+      <h2>Ας κάνουμε το <em>πρώτο βήμα</em> μαζί.</h2>
+      <p class="lead">Αν σκέφτεστε να ξεκινήσετε, αυτή είναι η πιο σημαντική κίνηση. Γράψτε μου ή τηλεφωνήστε — χωρίς δέσμευση, για να γνωριστούμε και να δούμε πώς μπορώ να σταθώ δίπλα σας.</p>
+      <div class="contact-tags">
+        <span>Ατομικές συνεδρίες ενηλίκων</span>
+        <span>Διαδικτυακά &amp; δια ζώσης ραντεβού</span>
+      </div>
+    </div>
+    <div class="contact-card reveal d1">
+      <a href="tel:+306984577414" class="c-row">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 005 5L14 13l5 2v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span><small>Τηλέφωνο</small><b>698 457 7414</b></span>
+      </a>
+      <a href="mailto:rafaelatsonidou@yahoo.gr" class="c-row">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span><small>Email</small><b>rafaelatsonidou@yahoo.gr</b></span>
+      </a>
+      <div class="c-row">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span><small>Διαθεσιμότητα</small><b>Κατόπιν ραντεβού</b></span>
+      </div>
+      <a href="#contact" class="btn-primary contact-cta" style="width:100%;justify-content:center">Κλείστε ραντεβού
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container foot-inner">
+    <span>© <span id="yr"></span> Ραφαέλα Τσονίδου · Κλινική Ψυχολόγος · Αρ. αδείας 384604</span>
+    <span class="foot-license">Σχεδιασμός &amp; ανάπτυξη από <a href="https://www.advonmedia.com" target="_blank" rel="noopener">Advon Media</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- Loader ---- */
+  window.addEventListener("load",function(){
+    setTimeout(function(){
+      document.getElementById("loader").classList.add("done");
+      document.body.classList.add("loaded");
+    },2000);
+  });
+  // safety fallback
+  setTimeout(function(){
+    document.getElementById("loader").classList.add("done");
+    document.body.classList.add("loaded");
+  },3500);
+
+  /* ---- Year ---- */
+  document.getElementById("yr").textContent=new Date().getFullYear();
+
+  /* ---- Nav scroll state ---- */
+  var header=document.getElementById("header");
+  var onScroll=function(){
+    if(window.scrollY>60)header.classList.add("scrolled");
+    else header.classList.remove("scrolled");
+  };
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+
+  /* ---- Mobile menu ---- */
+  var burger=document.getElementById("burger");
+  var mobileMenu=document.getElementById("mobileMenu");
+  var toggleMenu=function(){
+    var open=document.body.classList.toggle("menu-open");
+    burger.setAttribute("aria-expanded",open?"true":"false");
+    document.body.style.overflow=open?"hidden":"";
+  };
+  burger.addEventListener("click",toggleMenu);
+  mobileMenu.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click",function(){
+      document.body.classList.remove("menu-open");
+      burger.setAttribute("aria-expanded","false");
+      document.body.style.overflow="";
+    });
+  });
+
+  /* ---- Services accordion ---- */
+  document.querySelectorAll(".svc-trigger").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var item=btn.closest(".svc-item");
+      var body=item.querySelector(".svc-body");
+      var isOpen=item.classList.contains("open");
+      document.querySelectorAll(".svc-item.open").forEach(function(o){
+        o.classList.remove("open");
+        o.querySelector(".svc-body").style.maxHeight=null;
+        o.querySelector(".svc-trigger").setAttribute("aria-expanded","false");
+      });
+      if(!isOpen){
+        item.classList.add("open");
+        body.style.maxHeight=body.scrollHeight+"px";
+        btn.setAttribute("aria-expanded","true");
+      }
+    });
+  });
+
+  /* ---- FAQ accordion ---- */
+  document.querySelectorAll(".faq-q").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var item=btn.closest(".faq-item");
+      var a=item.querySelector(".faq-a");
+      var isOpen=item.classList.contains("open");
+      if(isOpen){
+        item.classList.remove("open");a.style.maxHeight=null;
+        btn.setAttribute("aria-expanded","false");
+      }else{
+        item.classList.add("open");a.style.maxHeight=a.scrollHeight+"px";
+        btn.setAttribute("aria-expanded","true");
+      }
+    });
+  });
+
+  /* ---- Reviews carousel ---- */
+  var track=document.getElementById("revTrack");
+  var prev=document.getElementById("revPrev");
+  var next=document.getElementById("revNext");
+  var index=0,autoTimer=null;
+  var step=function(){
+    var card=track.querySelector(".rev-card");
+    if(!card)return 0;
+    var gap=parseFloat(getComputedStyle(track).gap)||24;
+    return card.offsetWidth+gap;
+  };
+  var maxIndex=function(){
+    var total=track.children.length;
+    var visible=Math.max(1,Math.round(track.parentElement.offsetWidth/step()));
+    return Math.max(0,total-visible);
+  };
+  var go=function(i){
+    index=Math.max(0,Math.min(i,maxIndex()));
+    track.style.transform="translateX("+(-index*step())+"px)";
+  };
+  next.addEventListener("click",function(){index>=maxIndex()?go(0):go(index+1);resetAuto();});
+  prev.addEventListener("click",function(){go(index-1);resetAuto();});
+  var startAuto=function(){
+    autoTimer=setInterval(function(){index>=maxIndex()?go(0):go(index+1);},5000);
+  };
+  var resetAuto=function(){clearInterval(autoTimer);startAuto();};
+  startAuto();
+  track.addEventListener("mouseenter",function(){clearInterval(autoTimer);});
+  track.addEventListener("mouseleave",startAuto);
+  window.addEventListener("resize",function(){go(index);});
+
+  /* Expandable review text */
+  document.querySelectorAll(".rev-more").forEach(function(btn){
+    var txt=btn.previousElementSibling;
+    if(txt.scrollHeight<=txt.clientHeight+2){btn.style.display="none";}
+    btn.addEventListener("click",function(){
+      txt.classList.toggle("clamp");
+      btn.textContent=txt.classList.contains("clamp")?"Διαβάστε περισσότερα":"Λιγότερα";
+    });
+  });
+
+  /* ---- Scroll reveal ---- */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}
+    });
+  },{threshold:0.12,rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".reveal").forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>
