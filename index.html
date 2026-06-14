@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ραφαέλα Τσονίδου — Κλινική Ψυχολόγος | Θεραπεία Σχημάτων</title>
-<meta name="description" content="Ραφαέλα Τσονίδου, κλινική ψυχολόγος & εκπαιδευόμενη ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Διαδικτυακές και δια ζώσης συνεδρίες ενηλίκων.">
+<meta name="description" content="Η Ραφαέλα Τσονίδου είναι Κλινική Ψυχολόγος & Εκπαιδευόμενη Ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Παρέχει διαδικτυακές και δια ζώσης συνεδρίες ενηλίκων σε ένα ασφαλές πλαίσιο.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
     --ink:#22302c;
     --paper:#fbf9f4;
     --mist:#d9e2dd;
-    --rose:#9c5a63;            /* a single warm human accent, from the portraits' lipstick */
+    --rose:#9c5a63;
 
     --ff-display:"Fraunces", Georgia, serif;
     --ff-body:"Familjen Grotesk", system-ui, sans-serif;
@@ -28,7 +28,7 @@
     --ease-out-expo:cubic-bezier(.16,1,.3,1);
     --ease-soft:cubic-bezier(.4,0,.2,1);
 
-    --pad-section:clamp(4.5rem, 9vw, 9rem);
+    --pad-section:clamp(5rem, 10vw, 10rem);
     --container:1240px;
   }
 
@@ -67,60 +67,92 @@
   /* ============ LOADER ============ */
   #loader{
     position:fixed;inset:0;z-index:9999;background:var(--teal-ink);
-    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.6rem;
-    transition:opacity .9s var(--ease-soft),visibility .9s;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.2rem;
+    transition:opacity 1s var(--ease-soft),visibility 1s;
   }
-  #loader.done{opacity:0;visibility:hidden;}
-  #loader svg{width:120px;height:auto;overflow:visible;}
-  #loader .bird path{
-    fill:none;stroke:var(--mist);stroke-width:3.4;
-    stroke-linecap:round;stroke-linejoin:round;
-    stroke-dasharray:1400;stroke-dashoffset:1400;
-    animation:draw 1.9s var(--ease-out-expo) forwards;
+  #loader.done{opacity:0;visibility:hidden;transform:scale(1.02);}
+  
+  .logo-wrapper {
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: chicEnter 1.4s var(--ease-out-expo) 0.2s forwards;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    overflow: hidden;
   }
+  .logo-wrapper img {
+    width: 140%;
+    height: 140%;
+    object-fit: cover;
+    transform: rotate(90deg);
+  }
+  
   #loader .ld-name{
-    font-family:var(--ff-display);color:var(--paper);font-size:1.15rem;letter-spacing:.45em;
-    text-transform:uppercase;opacity:0;transform:translateY(10px);
-    animation:fadeUp .8s var(--ease-out-expo) 1.2s forwards;padding-left:.45em;
+    font-family:var(--ff-display);color:var(--paper);font-size:1.4rem;letter-spacing:.25em;
+    text-transform:uppercase;opacity:0;transform:translateY(15px);
+    animation:fadeUp 1s var(--ease-out-expo) 0.8s forwards;
   }
-  @keyframes draw{to{stroke-dashoffset:0;}}
+  #loader .ld-title{
+    font-family:var(--ff-body);color:var(--taupe);font-size:0.75rem;letter-spacing:.35em;
+    text-transform:uppercase;opacity:0;transform:translateY(15px);
+    animation:fadeUp 1s var(--ease-out-expo) 1s forwards;
+  }
+  
+  @keyframes chicEnter {
+    0% { opacity: 0; transform: scale(0.75) translateY(30px); filter: blur(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+  }
   @keyframes fadeUp{to{opacity:1;transform:none;}}
 
   /* ============ NAV ============ */
   header{
     position:fixed;top:0;left:0;width:100%;z-index:900;
-    transition:background .5s var(--ease-soft),box-shadow .5s,padding .5s;
+    transition:background .6s var(--ease-soft),box-shadow .6s,padding .6s;
     padding:1.5rem 0;
   }
   header.scrolled{
-    background:rgba(251,249,244,.86);backdrop-filter:blur(14px);
-    box-shadow:0 1px 0 rgba(60,93,86,.12);padding:.85rem 0;
+    background:rgba(251,249,244,.92);backdrop-filter:blur(18px);
+    box-shadow:0 4px 20px rgba(36,59,55,.06);padding:.85rem 0;
   }
   .nav-inner{display:flex;align-items:center;justify-content:space-between;}
   .brand{display:flex;align-items:center;gap:.7rem;}
-  .brand svg{width:38px;height:38px;transition:transform .5s var(--ease-out-expo);}
-  .brand:hover svg{transform:translateX(3px) rotate(-4deg);}
+  .brand svg{width:38px;height:38px;transition:transform .6s var(--ease-out-expo);}
+  .brand:hover svg{transform:translateX(3px) rotate(-8deg) scale(1.05);}
   .brand-text{display:flex;flex-direction:column;line-height:1.05;}
-  .brand-text b{font-family:var(--ff-display);font-weight:500;font-size:1.08rem;color:var(--teal-ink);letter-spacing:.01em;}
-  .brand-text span{font-family:var(--ff-body);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);}
+  .brand-text b{font-family:var(--ff-display);font-weight:500;font-size:1.08rem;color:var(--teal-ink);letter-spacing:.01em;transition:color .4s;}
+  .brand-text span{font-family:var(--ff-body);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);transition:color .4s;}
   header:not(.scrolled) .brand-text b{color:var(--paper);}
   header:not(.scrolled) .brand-text span{color:var(--mist);}
-  header:not(.scrolled) .brand svg path{stroke:var(--paper);}
+  header:not(.scrolled) .brand svg path{stroke:var(--paper);transition:stroke .4s;}
 
   nav ul{display:flex;align-items:center;gap:2.4rem;list-style:none;}
-  nav a{font-size:.86rem;letter-spacing:.02em;position:relative;font-weight:500;transition:color .3s;}
-  nav a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1.5px;background:currentColor;transition:width .35s var(--ease-out-expo);}
+  nav a{font-size:.86rem;letter-spacing:.02em;position:relative;font-weight:500;transition:color .4s;}
+  nav a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1.5px;background:currentColor;transition:width .4s var(--ease-out-expo);}
   nav a:hover::after{width:100%;}
   header:not(.scrolled) nav > ul > li > a{color:var(--paper);}
+  
   .nav-cta{
     border:1.5px solid var(--teal);color:var(--teal)!important;
-    padding:.62rem 1.4rem;border-radius:100px;font-weight:600;
-    transition:background .35s var(--ease-soft),color .35s,border-color .35s;
+    padding:.62rem 1.6rem;border-radius:100px;font-weight:600;
+    transition:all .4s var(--ease-out-expo);
+    box-shadow: 0 4px 15px transparent;
   }
   .nav-cta::after{display:none;}
-  .nav-cta:hover{background:var(--teal);color:var(--paper)!important;}
+  .nav-cta:hover{
+    background:var(--teal);color:var(--paper)!important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(94,138,127,.25);
+  }
   header:not(.scrolled) .nav-cta{border-color:var(--mist);color:var(--paper)!important;}
-  header:not(.scrolled) .nav-cta:hover{background:var(--paper);color:var(--teal-ink)!important;border-color:var(--paper);}
+  header:not(.scrolled) .nav-cta:hover{
+    background:var(--paper);color:var(--teal-ink)!important;border-color:var(--paper);
+    box-shadow: 0 8px 20px rgba(255,255,255,.2);
+  }
 
   .burger{display:none;width:30px;height:20px;position:relative;z-index:1001;}
   .burger span{position:absolute;left:0;width:100%;height:2px;background:var(--teal-ink);transition:.4s var(--ease-out-expo);}
@@ -136,7 +168,8 @@
   .mobile-menu{
     position:fixed;inset:0;z-index:1000;background:var(--teal-ink);
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;
-    opacity:0;visibility:hidden;transition:opacity .5s var(--ease-soft),visibility .5s;
+    opacity:0;visibility:hidden;transition:opacity .6s var(--ease-soft),visibility .6s;
+    backdrop-filter: blur(10px);
   }
   body.menu-open .mobile-menu{opacity:1;visibility:visible;}
   .mobile-menu a{
@@ -156,22 +189,32 @@
     position:relative;min-height:100svh;display:flex;align-items:center;
     background:var(--teal-ink);overflow:hidden;padding-top:6rem;
   }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+  }
   .hero-bg-bird{
     position:absolute;right:-6%;top:50%;transform:translateY(-50%);
-    width:min(62vw,820px);opacity:.10;pointer-events:none;
+    width:min(62vw,820px);opacity:.08;pointer-events:none;z-index: 2;
   }
   .hero-bg-bird path{
     fill:none;stroke:var(--mist);stroke-width:1.4;
     stroke-dasharray:2600;stroke-dashoffset:2600;
   }
-  body.loaded .hero-bg-bird path{animation:draw 3s var(--ease-out-expo) .3s forwards;}
+  body.loaded .hero-bg-bird path{animation:draw 4s var(--ease-out-expo) .6s forwards;}
   .hero-glow{
     position:absolute;width:60vw;height:60vw;max-width:760px;max-height:760px;
-    background:radial-gradient(circle,rgba(94,138,127,.55),transparent 62%);
-    top:-12%;left:-10%;filter:blur(20px);pointer-events:none;
+    background:radial-gradient(circle,rgba(94,138,127,.65),transparent 65%);
+    top:-12%;left:-10%;filter:blur(40px);pointer-events:none;
     animation:floatGlow 14s ease-in-out infinite;
+    z-index: 2;
   }
-  @keyframes floatGlow{0%,100%{transform:translate(0,0);}50%{transform:translate(40px,30px);}}
+  @keyframes floatGlow{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(40px,30px) scale(1.05);}}
 
   .hero-inner{position:relative;z-index:3;width:100%;}
   .hero h1{
@@ -179,40 +222,54 @@
     font-size:clamp(2.7rem,7.4vw,6.6rem);
     font-weight:300;letter-spacing:-.025em;max-width:16ch;
   }
-  .hero h1 em{font-style:italic;color:var(--teal);font-weight:400;}
+  .hero h1 em{font-style:italic;color:var(--teal);font-weight:400; position: relative;}
+  .hero h1 em::after {
+    content: ""; position: absolute; left: 0; bottom: 10%; width: 100%; height: 30%; background: rgba(94,138,127,0.3); z-index: -1; transform: scaleX(0); transform-origin: left; transition: transform 1s var(--ease-out-expo) 1.2s;
+  }
+  body.loaded .hero h1 em::after { transform: scaleX(1); }
+  
   .hero .line{display:block;overflow:hidden;}
-  .hero .line span{display:block;transform:translateY(110%);transition:transform 1.1s var(--ease-out-expo);}
-  body.loaded .hero .line span{transform:translateY(0);}
-  body.loaded .hero .line:nth-child(2) span{transition-delay:.13s;}
-  body.loaded .hero .line:nth-child(3) span{transition-delay:.26s;}
+  .hero .line span{display:block;transform:translateY(110%) rotate(4deg); transform-origin: left bottom; opacity: 0; transition: transform 1.2s var(--ease-out-expo), opacity 1s ease;}
+  body.loaded .hero .line span{transform:translateY(0) rotate(0deg); opacity: 1;}
+  body.loaded .hero .line:nth-child(2) span{transition-delay:.15s;}
+  body.loaded .hero .line:nth-child(3) span{transition-delay:.3s;}
 
   .hero-sub{
     margin-top:2rem;color:var(--mist);font-size:clamp(1.02rem,1.6vw,1.22rem);
-    max-width:46ch;font-weight:400;line-height:1.65;
-    opacity:0;transform:translateY(18px);transition:.9s var(--ease-out-expo) .6s;
+    max-width:48ch;font-weight:400;line-height:1.65;
+    opacity:0;transform:translateY(25px);transition:1s var(--ease-out-expo) .7s;
   }
   body.loaded .hero-sub{opacity:1;transform:none;}
   .hero-actions{
-    margin-top:2.6rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;
-    opacity:0;transform:translateY(18px);transition:.9s var(--ease-out-expo) .78s;
+    margin-top:2.6rem;display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;
+    opacity:0;transform:translateY(25px);transition:1s var(--ease-out-expo) .9s;
   }
   body.loaded .hero-actions{opacity:1;transform:none;}
+  
   .btn-primary{
-    background:var(--teal);color:var(--paper);padding:1.02rem 2.2rem;border-radius:100px;
+    background:var(--teal);color:var(--paper);padding:1.1rem 2.4rem;border-radius:100px;
     font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:.6rem;
-    transition:background .35s var(--ease-soft),transform .35s var(--ease-out-expo);
+    transition:all .4s var(--ease-out-expo);
+    box-shadow: 0 10px 25px -10px rgba(94,138,127,.6);
+    position: relative;
+    overflow: hidden;
   }
-  .btn-primary:hover{background:var(--paper);color:var(--teal-ink);transform:translateY(-3px);}
-  .btn-primary svg{width:16px;height:16px;transition:transform .35s var(--ease-out-expo);}
-  .btn-primary:hover svg{transform:translateX(4px);}
-  .btn-ghost{color:var(--paper);font-weight:500;font-size:.95rem;display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 0;border-bottom:1px solid rgba(217,226,221,.4);transition:border-color .3s;}
-  .btn-ghost:hover{border-color:var(--paper);}
+  .btn-primary::before {
+    content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.6s;
+  }
+  .btn-primary:hover{background:var(--paper);color:var(--teal-ink);transform:translateY(-4px); box-shadow: 0 15px 35px -10px rgba(255,255,255,.3);}
+  .btn-primary:hover::before { left: 100%; }
+  .btn-primary svg{width:18px;height:18px;transition:transform .4s var(--ease-out-expo);}
+  .btn-primary:hover svg{transform:translateX(5px);}
+  
+  .btn-ghost{color:var(--paper);font-weight:500;font-size:.95rem;display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 0;border-bottom:1px solid rgba(217,226,221,.3);transition:all .4s var(--ease-out-expo);}
+  .btn-ghost:hover{border-color:var(--paper); opacity: 0.8; transform: translateY(-2px);}
 
   .scroll-cue{
     position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:4;
     display:flex;flex-direction:column;align-items:center;gap:.6rem;
     color:var(--mist);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;
-    opacity:0;transition:opacity 1s 1.4s;
+    opacity:0;transition:opacity 1s 1.6s;
   }
   body.loaded .scroll-cue{opacity:.8;}
   .scroll-cue .dot{width:1px;height:46px;background:linear-gradient(var(--mist),transparent);position:relative;overflow:hidden;}
@@ -220,177 +277,280 @@
   @keyframes cueRun{0%{transform:translateY(-100%);}100%{transform:translateY(250%);}}
 
   /* ============ MARQUEE ============ */
-  .marquee{background:var(--teal);color:var(--paper);overflow:hidden;padding:1.15rem 0;border-top:1px solid var(--teal-deep);}
-  .marquee-track{display:flex;width:max-content;animation:scrollX 38s linear infinite;}
+  .marquee{background:var(--teal);color:var(--paper);overflow:hidden;padding:1.15rem 0;border-top:1px solid var(--teal-deep); box-shadow: 0 4px 20px rgba(0,0,0,0.1) inset;}
+  .marquee-track{display:flex;width:max-content;animation:scrollX 40s linear infinite;}
   .marquee:hover .marquee-track{animation-play-state:paused;}
-  .marquee-track span{font-family:var(--ff-display);font-style:italic;font-size:1.5rem;padding:0 1.6rem;white-space:nowrap;display:inline-flex;align-items:center;gap:1.6rem;}
-  .marquee-track span::after{content:"✦";font-style:normal;font-size:.7rem;color:var(--mist);}
+  .marquee-track span{font-family:var(--ff-display);font-style:italic;font-size:1.5rem;padding:0 1.6rem;white-space:nowrap;display:inline-flex;align-items:center;gap:1.6rem; text-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+  .marquee-track span::after{content:"✦";font-style:normal;font-size:.7rem;color:var(--mist); text-shadow: none;}
   @keyframes scrollX{to{transform:translateX(-50%);}}
 
   /* ============ ABOUT ============ */
-  .about{padding:var(--pad-section) 0;background:var(--paper);}
-  .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2.5rem,6vw,6rem);align-items:center;}
+  .about{padding:var(--pad-section) 0;background:var(--paper); position: relative; z-index: 1;}
+  .about::before {
+    content:""; position:absolute; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at right center, rgba(201,187,166,0.15), transparent 60%); z-index: -1; pointer-events: none;
+  }
+  .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(3.5rem,7vw,7rem);align-items:center;}
   .about-media{position:relative;}
+  .about-media::before {
+    content: ""; position: absolute; inset: -25px; background: radial-gradient(circle, rgba(94,138,127,0.2) 0%, transparent 60%); filter: blur(30px); z-index: -1; border-radius: 50%; transition: all 1s ease;
+  }
+  .about-media:hover::before { transform: scale(1.1); opacity: 0.4; }
   .about-media .frame{
-    position:relative;border-radius:6px 6px 120px 6px;overflow:hidden;
-    box-shadow:0 30px 70px -30px rgba(36,59,55,.45);
+    position:relative;border-radius:8px 8px 140px 8px;overflow:hidden;
+    box-shadow:0 30px 70px -25px rgba(36,59,55,.4);
+    transition: transform 0.8s var(--ease-out-expo), box-shadow 0.8s var(--ease-out-expo);
   }
-  .about-media img{width:100%;height:auto;transition:transform 1.4s var(--ease-out-expo);}
-  .about-media:hover img{transform:scale(1.04);}
+  .about-media:hover .frame { transform: translateY(-10px); box-shadow: 0 40px 85px -20px rgba(36,59,55,.5); }
+  .about-media img{width:100%;height:auto;transition:transform 1.6s var(--ease-out-expo);}
+  .about-media:hover img{transform:scale(1.06);}
   .about-media .badge{
-    position:absolute;bottom:-26px;left:-26px;background:var(--teal-ink);color:var(--paper);
-    padding:1.5rem 1.7rem;border-radius:4px;max-width:200px;
-    box-shadow:0 20px 50px -20px rgba(36,59,55,.6);
+    position:absolute;bottom:-30px;left:-30px;background:rgba(36,59,55,0.95);color:var(--paper);
+    padding:1.6rem 1.8rem;border-radius:6px;max-width:210px;
+    box-shadow:0 25px 50px -15px rgba(36,59,55,.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    transform: translateY(20px); opacity: 0; animation: fadeUp 1s var(--ease-out-expo) forwards;
+    animation-play-state: paused;
   }
-  .about-media .badge b{font-family:var(--ff-display);font-size:2.4rem;font-weight:400;display:block;line-height:1;color:var(--teal);}
-  .about-media .badge small{font-size:.74rem;letter-spacing:.04em;color:var(--mist);line-height:1.4;display:block;margin-top:.45rem;}
-  .about h2{font-size:clamp(2rem,4.2vw,3.4rem);margin:1.4rem 0 1.6rem;color:var(--teal-ink);max-width:18ch;}
-  .about p{color:#4a5a55;margin-bottom:1.15rem;font-size:1.04rem;max-width:54ch;}
+  .about-media.in .badge { animation-play-state: running; animation-delay: 0.4s; }
+  .about-media .badge b{font-family:var(--ff-display);font-size:2.6rem;font-weight:400;display:block;line-height:1;color:var(--teal);}
+  .about-media .badge small{font-size:.76rem;letter-spacing:.04em;color:var(--mist);line-height:1.45;display:block;margin-top:.5rem;}
+  
+  .about h2{font-size:clamp(2.2rem,4.5vw,3.8rem);margin:1.4rem 0 1.8rem;color:var(--teal-ink);max-width:18ch;}
+  .about p{color:#4a5a55;margin-bottom:1.25rem;font-size:1.06rem;max-width:54ch; line-height: 1.7;}
   .pull-quote{
-    font-family:var(--ff-display);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.7rem);
-    color:var(--teal-deep);line-height:1.35;margin:2rem 0;padding-left:1.5rem;
-    border-left:2px solid var(--teal);max-width:30ch;
+    font-family:var(--ff-display);font-style:italic;font-size:clamp(1.4rem,2.6vw,1.9rem);
+    color:var(--teal-deep);line-height:1.4;margin:2.5rem 0;padding-left:1.8rem;
+    border-left:3px solid var(--teal);max-width:30ch;
+    position: relative;
   }
-  .credentials{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem;}
-  .credentials span{font-size:.78rem;letter-spacing:.04em;padding:.5rem 1rem;border:1px solid var(--taupe);border-radius:100px;color:var(--teal-deep);background:var(--linen);}
+  .credentials{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2.2rem;}
+  .credentials span{font-size:.8rem;letter-spacing:.05em;padding:.6rem 1.2rem;border:1px solid var(--taupe);border-radius:100px;color:var(--teal-deep);background:transparent; transition: all 0.4s ease;}
+  .credentials span:hover { background: var(--teal); color: var(--paper); border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(94,138,127,.2); }
 
-  /* ============ EXPERTISE / SERVICES ============ */
-  .services{padding:var(--pad-section) 0;background:var(--linen);position:relative;}
-  .sec-head{max-width:620px;margin-bottom:clamp(2.5rem,5vw,4rem);}
-  .sec-head h2{font-size:clamp(2rem,4.4vw,3.5rem);color:var(--teal-ink);margin-top:1.2rem;}
-  .sec-head p{margin-top:1.1rem;color:#566;font-size:1.05rem;}
-  .svc-list{border-top:1px solid var(--taupe);}
-  .svc-item{border-bottom:1px solid var(--taupe);overflow:hidden;}
-  .svc-trigger{
-    width:100%;display:flex;align-items:center;gap:1.4rem;padding:1.7rem .5rem;text-align:left;
-    transition:padding-left .4s var(--ease-out-expo),color .3s;
+  /* ============ EXPERTISE / SERVICES (Redesigned Grid) ============ */
+  .services{padding:var(--pad-section) 0;background:var(--linen);position:relative; z-index: 1;}
+  .sec-head{max-width:640px;margin-bottom:clamp(3.5rem,6vw,5rem);}
+  .sec-head h2{font-size:clamp(2.2rem,4.5vw,3.8rem);color:var(--teal-ink);margin-top:1.2rem;}
+  .sec-head p{margin-top:1.2rem;color:#566;font-size:1.08rem; line-height: 1.7;}
+  
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
   }
-  .svc-trigger:hover{padding-left:1.3rem;color:var(--teal);}
-  .svc-num{font-family:var(--ff-body);font-size:.78rem;font-weight:600;color:var(--teal);letter-spacing:.1em;width:2.4rem;flex-shrink:0;}
-  .svc-title{font-family:var(--ff-display);font-size:clamp(1.25rem,2.6vw,1.85rem);font-weight:400;flex:1;color:var(--teal-ink);transition:color .3s;}
-  .svc-trigger:hover .svc-title{color:var(--teal);}
-  .svc-plus{width:24px;height:24px;flex-shrink:0;position:relative;}
-  .svc-plus::before,.svc-plus::after{content:"";position:absolute;background:var(--teal);transition:transform .4s var(--ease-out-expo),opacity .3s;}
-  .svc-plus::before{top:50%;left:0;width:100%;height:1.5px;transform:translateY(-50%);}
-  .svc-plus::after{left:50%;top:0;height:100%;width:1.5px;transform:translateX(-50%);}
-  .svc-item.open .svc-plus::after{transform:translateX(-50%) scaleY(0);opacity:0;}
-  .svc-body{max-height:0;overflow:hidden;transition:max-height .55s var(--ease-out-expo);}
-  .svc-body-inner{padding:0 .5rem 1.9rem 4.2rem;color:#4a5a55;max-width:62ch;font-size:1.02rem;}
-  .svc-meta{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;font-size:.8rem;letter-spacing:.05em;color:var(--teal);font-weight:600;}
-  .svc-meta::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);}
+  .svc-card {
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 3rem 2.2rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(201,187,166, 0.6);
+    transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s var(--ease-out-expo), border-color 0.4s;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .svc-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, var(--teal-ink) 0%, var(--teal-deep) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.6s var(--ease-out-expo);
+  }
+  .svc-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 35px 65px -20px rgba(36,59,55,0.25);
+    border-color: transparent;
+  }
+  .svc-card:hover::before { opacity: 1; }
+  .svc-card:hover .svc-num,
+  .svc-card:hover .svc-title,
+  .svc-card:hover .svc-desc,
+  .svc-card:hover .svc-meta {
+    color: var(--paper);
+  }
+  .svc-card:hover .svc-meta::before { background: var(--paper); }
+  
+  .svc-num {
+    font-family: var(--ff-body);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 1.2rem;
+    transition: color 0.4s;
+  }
+  .svc-title {
+    font-family: var(--ff-display);
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    color: var(--teal-ink);
+    margin-bottom: 1.2rem;
+    transition: color 0.4s;
+    line-height: 1.25;
+  }
+  .svc-desc {
+    color: #4a5a55;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    transition: color 0.4s;
+    flex-grow: 1;
+  }
+  .svc-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2.5rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--teal);
+    font-weight: 600;
+    transition: color 0.4s;
+    text-transform: uppercase;
+  }
+  .svc-meta::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    transition: background 0.4s;
+  }
 
   /* ============ PROCESS ============ */
   .process{padding:var(--pad-section) 0;background:var(--teal-ink);color:var(--paper);position:relative;overflow:hidden;}
-  .process .hero-glow{opacity:.5;animation-duration:18s;}
+  .process .hero-glow{opacity:.5;animation-duration:18s; filter: blur(50px);}
   .process .eyebrow{color:var(--mist);}
   .process .eyebrow::before{background:var(--mist);}
-  .process h2{color:var(--paper);font-size:clamp(2rem,4.4vw,3.5rem);margin-top:1.2rem;max-width:16ch;}
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;margin-top:clamp(2.6rem,5vw,4rem);position:relative;z-index:2;}
-  .step{position:relative;padding-top:2.2rem;}
-  .step .line{position:absolute;top:0;left:0;width:100%;height:1px;background:rgba(217,226,221,.28);}
-  .step .line::before{content:"";position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;background:var(--teal);}
-  .step b{font-family:var(--ff-display);font-size:2.6rem;font-weight:300;color:var(--teal);display:block;line-height:1;}
-  .step h3{font-size:1.2rem;margin:.9rem 0 .6rem;color:var(--paper);font-weight:500;}
-  .step p{color:var(--mist);font-size:.95rem;line-height:1.6;}
+  .process h2{color:var(--paper);font-size:clamp(2.2rem,4.5vw,3.8rem);margin-top:1.2rem;max-width:18ch;}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:clamp(3.5rem,6vw,5rem);position:relative;z-index:2;}
+  .step{position:relative;padding-top:2.6rem; transition: transform 0.5s ease;}
+  .step:hover { transform: translateY(-8px); }
+  .step .line{position:absolute;top:0;left:0;width:100%;height:1px;background:rgba(217,226,221,.15);}
+  .step .line::before{content:"";position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;background:var(--teal); transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s;}
+  .step:hover .line::before { transform: scale(1.6); box-shadow: 0 0 15px var(--teal); }
+  .step b{font-family:var(--ff-display);font-size:3rem;font-weight:300;color:var(--teal);display:block;line-height:1; opacity: 0.8;}
+  .step h3{font-size:1.25rem;margin:1.2rem 0 .8rem;color:var(--paper);font-weight:500;}
+  .step p{color:var(--mist);font-size:1rem;line-height:1.65; opacity: 0.9;}
 
   /* ============ VALUES ============ */
-  .values{padding:var(--pad-section) 0;background:var(--paper);}
-  .val-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:clamp(2.4rem,5vw,3.6rem);}
+  .values{padding:var(--pad-section) 0;background:var(--paper); position: relative;}
+  .values::after { content:""; position:absolute; bottom:0; left:0; width:100%; height:1px; background: linear-gradient(90deg, transparent, var(--taupe), transparent); opacity: 0.4; }
+  .val-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:clamp(3rem,5vw,4.5rem);}
   .val-card{
-    background:var(--linen);padding:2.3rem 2rem;border-radius:4px;position:relative;overflow:hidden;
-    border:1px solid transparent;transition:transform .5s var(--ease-out-expo),border-color .5s,background .5s;
+    background:var(--linen);padding:3rem 2.4rem;border-radius:8px;position:relative;overflow:hidden;
+    border:1px solid transparent;transition:all .6s var(--ease-out-expo);
+    z-index: 1;
   }
-  .val-card::before{content:"";position:absolute;top:0;left:0;width:0;height:3px;background:var(--teal);transition:width .5s var(--ease-out-expo);}
-  .val-card:hover{transform:translateY(-7px);border-color:var(--taupe);background:var(--paper);box-shadow:0 24px 50px -28px rgba(36,59,55,.3);}
+  .val-card::before{content:"";position:absolute;top:0;left:0;width:0;height:4px;background:var(--teal);transition:width .6s var(--ease-out-expo);}
+  .val-card:hover{transform:translateY(-10px);border-color:var(--taupe);background:var(--paper);box-shadow:0 30px 60px -25px rgba(36,59,55,.25);}
   .val-card:hover::before{width:100%;}
-  .val-icon{width:42px;height:42px;color:var(--teal);margin-bottom:1.3rem;}
-  .val-card h3{font-size:1.3rem;color:var(--teal-ink);margin-bottom:.7rem;font-weight:500;}
-  .val-card p{color:#566;font-size:.97rem;line-height:1.62;}
+  .val-icon{width:48px;height:48px;color:var(--teal);margin-bottom:1.6rem; transition: transform 0.6s var(--ease-out-expo);}
+  .val-card:hover .val-icon { transform: scale(1.1) rotate(5deg); }
+  .val-card h3{font-size:1.4rem;color:var(--teal-ink);margin-bottom:1rem;font-weight:500; font-family: var(--ff-display);}
+  .val-card p{color:#566;font-size:1.02rem;line-height:1.7;}
 
   /* ============ REVIEWS ============ */
-  .reviews{padding:var(--pad-section) 0;background:var(--linen-warm);overflow:hidden;}
-  .rev-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.6rem;}
-  .rev-score{display:flex;align-items:center;gap:1rem;}
-  .rev-score b{font-family:var(--ff-display);font-size:3.4rem;font-weight:400;color:var(--teal-ink);line-height:1;}
-  .rev-score .stars{display:flex;flex-direction:column;gap:.2rem;}
-  .rev-score .stars div{color:var(--teal);letter-spacing:.1em;font-size:.9rem;}
-  .rev-score .stars small{color:#677;font-size:.78rem;}
-  .rev-controls{display:flex;gap:.7rem;}
-  .rev-controls button{width:48px;height:48px;border:1.5px solid var(--taupe);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--teal-deep);transition:background .35s,color .35s,border-color .35s;}
-  .rev-controls button:hover{background:var(--teal);color:var(--paper);border-color:var(--teal);}
-  .rev-controls svg{width:18px;height:18px;}
-  .rev-viewport{overflow:hidden;}
-  .rev-track{display:flex;gap:1.5rem;transition:transform .65s var(--ease-out-expo);}
+  .reviews{padding:var(--pad-section) 0;background:var(--linen-warm);overflow:hidden; position: relative;}
+  .rev-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:3.5rem;}
+  .rev-score{display:flex;align-items:center;gap:1.2rem;}
+  .rev-score b{font-family:var(--ff-display);font-size:4rem;font-weight:400;color:var(--teal-ink);line-height:1;}
+  .rev-score .stars{display:flex;flex-direction:column;gap:.3rem;}
+  .rev-score .stars div{color:var(--teal);letter-spacing:.15em;font-size:1rem;}
+  .rev-score .stars small{color:#677;font-size:.82rem;}
+  .rev-controls{display:flex;gap:.8rem;}
+  .rev-controls button{width:52px;height:52px;border:1.5px solid var(--taupe);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--teal-deep);transition:all .4s var(--ease-out-expo); background: var(--paper);}
+  .rev-controls button:hover{background:var(--teal);color:var(--paper);border-color:var(--teal); transform: scale(1.08); box-shadow: 0 10px 20px rgba(94,138,127,.3);}
+  .rev-controls svg{width:20px;height:20px;}
+  .rev-viewport{overflow:hidden; padding: 1rem 0 2rem;}
+  .rev-track{display:flex;gap:2rem;transition:transform .8s var(--ease-out-expo);}
   .rev-card{
-    flex:0 0 clamp(280px,42%,420px);background:var(--paper);border-radius:6px;padding:2.2rem 2rem;
+    flex:0 0 clamp(300px,40%,440px);background:var(--paper);border-radius:12px;padding:2.8rem 2.4rem;
     border:1px solid var(--taupe);display:flex;flex-direction:column;
+    box-shadow: 0 15px 35px -15px rgba(0,0,0,0.06);
+    transition: transform 0.5s ease;
   }
-  .rev-card .quote-mark{font-family:var(--ff-display);font-size:3rem;color:var(--teal);line-height:.5;height:1.2rem;}
-  .rev-text{color:#3f4f4a;font-size:1rem;line-height:1.65;margin:1.2rem 0 1.3rem;flex:1;}
+  .rev-card:hover { transform: translateY(-5px); box-shadow: 0 25px 45px -15px rgba(0,0,0,0.1); }
+  .rev-card .quote-mark{font-family:var(--ff-display);font-size:3.5rem;color:var(--teal);line-height:.5;height:1.4rem; opacity: 0.6;}
+  .rev-text{color:#3f4f4a;font-size:1.05rem;line-height:1.7;margin:1.5rem 0 1.6rem;flex:1; font-style: italic;}
   .rev-text.clamp{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;}
-  .rev-more{font-size:.8rem;font-weight:600;color:var(--teal);letter-spacing:.04em;align-self:flex-start;margin-bottom:1.1rem;border-bottom:1px solid var(--teal);}
-  .rev-author{display:flex;align-items:center;gap:.85rem;margin-top:auto;}
-  .rev-author .av{width:42px;height:42px;border-radius:50%;background:var(--teal);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:1.1rem;flex-shrink:0;}
-  .rev-author b{display:block;font-size:.95rem;color:var(--teal-ink);font-weight:600;}
-  .rev-author small{color:#788;font-size:.78rem;}
-  .rev-footer{margin-top:2.4rem;}
-  .rev-footer a{font-size:.88rem;color:var(--teal-deep);font-weight:600;border-bottom:1px solid var(--taupe);transition:border-color .3s;}
-  .rev-footer a:hover{border-color:var(--teal-deep);}
+  .rev-more{font-size:.85rem;font-weight:600;color:var(--teal);letter-spacing:.05em;align-self:flex-start;margin-bottom:1.4rem;border-bottom:1px solid var(--teal); transition: opacity 0.3s;}
+  .rev-more:hover { opacity: 0.7; }
+  .rev-author{display:flex;align-items:center;gap:1rem;margin-top:auto;}
+  .rev-author .av{width:46px;height:46px;border-radius:50%;background:var(--teal);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:1.2rem;flex-shrink:0; box-shadow: 0 5px 15px rgba(94,138,127,.3);}
+  .rev-author b{display:block;font-size:1rem;color:var(--teal-ink);font-weight:600;}
+  .rev-author small{color:#788;font-size:.8rem;}
+  .rev-footer{margin-top:3rem;}
+  .rev-footer a{font-size:.92rem;color:var(--teal-deep);font-weight:600;border-bottom:2px solid var(--taupe);padding-bottom: 2px;transition:all .4s ease;}
+  .rev-footer a:hover{border-color:var(--teal-deep); letter-spacing: 0.02em;}
 
   /* ============ FAQ ============ */
   .faq{padding:var(--pad-section) 0;background:var(--paper);}
-  .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,5vw,5rem);align-items:start;}
+  .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(3rem,6vw,6rem);align-items:start;}
   .faq-list{border-top:1px solid var(--taupe);}
   .faq-item{border-bottom:1px solid var(--taupe);}
-  .faq-q{width:100%;text-align:left;display:flex;gap:1.2rem;align-items:center;padding:1.5rem 0;font-family:var(--ff-display);font-size:clamp(1.1rem,2vw,1.35rem);color:var(--teal-ink);font-weight:400;}
-  .faq-q .ic{margin-left:auto;width:20px;height:20px;flex-shrink:0;position:relative;transition:transform .4s var(--ease-out-expo);}
+  .faq-q{width:100%;text-align:left;display:flex;gap:1.5rem;align-items:center;padding:1.8rem 0;font-family:var(--ff-display);font-size:clamp(1.2rem,2.2vw,1.45rem);color:var(--teal-ink);font-weight:400; transition: color 0.4s;}
+  .faq-q:hover { color: var(--teal); }
+  .faq-q .ic{margin-left:auto;width:24px;height:24px;flex-shrink:0;position:relative;transition:transform .5s var(--ease-out-expo);}
   .faq-q .ic::before,.faq-q .ic::after{content:"";position:absolute;background:var(--teal);}
-  .faq-q .ic::before{top:50%;left:0;width:100%;height:1.5px;transform:translateY(-50%);}
-  .faq-q .ic::after{left:50%;top:0;height:100%;width:1.5px;transform:translateX(-50%);transition:transform .4s var(--ease-out-expo);}
+  .faq-q .ic::before{top:50%;left:0;width:100%;height:2px;transform:translateY(-50%);}
+  .faq-q .ic::after{left:50%;top:0;height:100%;width:2px;transform:translateX(-50%);transition:transform .5s var(--ease-out-expo);}
   .faq-item.open .faq-q .ic::after{transform:translateX(-50%) scaleY(0);}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out-expo);}
-  .faq-a p{padding:0 0 1.6rem;color:#4a5a55;max-width:60ch;font-size:1.02rem;line-height:1.65;}
-  .faq-aside h2{font-size:clamp(1.8rem,3.6vw,2.8rem);color:var(--teal-ink);margin-top:1rem;}
+  .faq-item.open .faq-q { color: var(--teal); }
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .6s var(--ease-out-expo);}
+  .faq-a p{padding:0 0 1.8rem;color:#4a5a55;max-width:62ch;font-size:1.06rem;line-height:1.7;}
+  .faq-aside h2{font-size:clamp(2rem,4vw,3.2rem);color:var(--teal-ink);margin-top:1.2rem;}
 
   /* ============ CONTACT ============ */
   .contact{padding:var(--pad-section) 0;background:var(--teal-ink);color:var(--paper);position:relative;overflow:hidden;}
-  .contact .hero-glow{opacity:.45;left:auto;right:-10%;top:auto;bottom:-20%;animation-duration:20s;}
-  .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2.5rem,6vw,6rem);position:relative;z-index:2;align-items:center;}
-  .contact h2{color:var(--paper);font-size:clamp(2.2rem,5vw,4rem);font-weight:300;letter-spacing:-.02em;max-width:13ch;}
+  .contact .hero-glow{opacity:.4;left:auto;right:-10%;top:auto;bottom:-20%;animation-duration:22s;}
+  .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(3.5rem,7vw,7rem);position:relative;z-index:2;align-items:center;}
+  .contact h2{color:var(--paper);font-size:clamp(2.4rem,5.5vw,4.4rem);font-weight:300;letter-spacing:-.02em;max-width:14ch;}
   .contact h2 em{font-style:italic;color:var(--teal);}
-  .contact p.lead{color:var(--mist);margin-top:1.5rem;max-width:42ch;font-size:1.08rem;line-height:1.65;}
-  .contact-cta{margin-top:2.4rem;}
-  .contact-card{background:rgba(251,249,244,.06);border:1px solid rgba(217,226,221,.2);border-radius:8px;padding:2.4rem;backdrop-filter:blur(6px);}
-  .c-row{display:flex;align-items:center;gap:1.1rem;padding:1.15rem 0;border-bottom:1px solid rgba(217,226,221,.16);transition:padding-left .35s var(--ease-out-expo);}
+  .contact p.lead{color:var(--mist);margin-top:1.8rem;max-width:44ch;font-size:1.12rem;line-height:1.7;}
+  
+  .contact-card{
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:3rem;
+    backdrop-filter:blur(12px); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.3);
+    transition: transform 0.6s ease;
+  }
+  .contact-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,.2); }
+  .c-row{display:flex;align-items:center;gap:1.4rem;padding:1.4rem 0;border-bottom:1px solid rgba(217,226,221,.12);transition:padding-left .4s var(--ease-out-expo);}
   .c-row:last-child{border-bottom:none;}
-  .c-row:hover{padding-left:.6rem;}
-  .c-row .ic{width:44px;height:44px;border-radius:50%;border:1px solid rgba(217,226,221,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--teal);transition:background .35s,color .35s;}
-  .c-row:hover .ic{background:var(--teal);color:var(--paper);}
-  .c-row .ic svg{width:19px;height:19px;}
-  .c-row small{display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:.2rem;}
-  .c-row b{font-weight:500;font-size:1.02rem;color:var(--paper);word-break:break-word;}
-  .contact-tags{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.8rem;}
-  .contact-tags span{font-size:.76rem;padding:.5rem 1rem;border:1px solid rgba(217,226,221,.3);border-radius:100px;color:var(--mist);}
+  .c-row:hover{padding-left:.8rem;}
+  .c-row .ic{width:50px;height:50px;border-radius:50%;border:1px solid rgba(217,226,221,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--teal);transition:all .4s var(--ease-out-expo);}
+  .c-row:hover .ic{background:var(--teal);color:var(--paper); border-color: var(--teal); transform: scale(1.1);}
+  .c-row .ic svg{width:22px;height:22px;}
+  .c-row small{display:block;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mist);margin-bottom:.3rem;}
+  .c-row b{font-weight:500;font-size:1.08rem;color:var(--paper);word-break:break-word; transition: color 0.3s;}
+  .c-row:hover b { color: var(--teal); }
+  
+  .contact-tags{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2.5rem;}
+  .contact-tags span{font-size:.8rem;padding:.6rem 1.2rem;border:1px solid rgba(217,226,221,.25);border-radius:100px;color:var(--mist); transition: all 0.3s;}
+  .contact-tags span:hover { background: rgba(217,226,221,.1); border-color: rgba(217,226,221,.5); color: var(--paper); }
 
   /* ============ FOOTER ============ */
-  footer{background:var(--teal-ink);color:var(--mist);padding:2.4rem 0;border-top:1px solid rgba(217,226,221,.14);}
-  .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.82rem;}
-  .foot-inner a{color:var(--paper);font-weight:600;border-bottom:1px solid var(--teal);transition:border-color .3s;}
-  .foot-inner a:hover{border-color:var(--paper);}
-  .foot-license{opacity:.7;font-size:.74rem;}
+  footer{background:#1b2522;color:var(--mist);padding:3rem 0;border-top:1px solid rgba(217,226,221,.08);}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;font-size:.85rem;}
+  .foot-inner a{color:var(--paper);font-weight:600;border-bottom:1px solid var(--teal);transition:border-color .4s, color .4s;}
+  .foot-inner a:hover{border-color:var(--paper); color: #fff;}
+  .foot-license{opacity:.7;font-size:.78rem;}
 
   /* ============ REVEAL ============ */
-  .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease-out-expo),transform .9s var(--ease-out-expo);}
-  .reveal.in{opacity:1;transform:none;}
-  .reveal.d1{transition-delay:.1s;}
-  .reveal.d2{transition-delay:.2s;}
-  .reveal.d3{transition-delay:.3s;}
+  .reveal{opacity:0;transform:translateY(40px) scale(0.98);transition:opacity 1s var(--ease-out-expo),transform 1s var(--ease-out-expo); filter: blur(3px);}
+  .reveal.in{opacity:1;transform:none; filter: blur(0);}
+  .reveal.d1{transition-delay:.15s;}
+  .reveal.d2{transition-delay:.3s;}
+  .reveal.d3{transition-delay:.45s;}
 
   /* ============ RESPONSIVE ============ */
   @media(max-width:980px){
     .about-grid,.faq-grid,.contact-grid{grid-template-columns:1fr;}
     .steps,.val-grid{grid-template-columns:1fr 1fr;}
-    .about-media{max-width:460px;margin:0 auto;}
+    .about-media{max-width:500px;margin:0 auto;}
     .about-media .badge{left:0;}
     .faq-aside{order:-1;}
   }
@@ -398,33 +558,32 @@
     nav ul{display:none;}
     .burger{display:block;}
     .steps,.val-grid{grid-template-columns:1fr;}
-    .rev-card{flex:0 0 84%;}
+    .rev-card{flex:0 0 88%; padding: 2rem 1.8rem;}
     .rev-top{align-items:center;}
-    .svc-body-inner{padding-left:.5rem;}
     .hero h1{letter-spacing:-.02em;}
-    .about-media .badge{padding:1.1rem 1.2rem;}
-    .about-media .badge b{font-size:1.9rem;}
+    .about-media .badge{padding:1.2rem 1.4rem; bottom: -20px;}
+    .about-media .badge b{font-size:2.2rem;}
+    .contact-card { padding: 2rem; }
+    .svc-card { padding: 2.2rem 1.8rem; }
   }
 
   @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;}
-    .hero .line span{transform:none;}
-    .reveal{opacity:1;transform:none;}
-    #loader .bird path{stroke-dashoffset:0;}
+    .hero .line span{transform:none; opacity: 1;}
+    .reveal{opacity:1;transform:none; filter: blur(0);}
   }
 </style>
 </head>
 <body>
 
-<!-- ===== LOADER ===== -->
 <div id="loader" aria-hidden="true">
-  <svg class="bird" viewBox="0 0 120 90" fill="none">
-    <path d="M6 60 C28 34 50 26 74 30 C58 38 50 48 48 60 C66 44 92 36 116 30 C92 44 70 54 50 78"/>
-  </svg>
+  <div class="logo-wrapper">
+    <img src="https://raw.githubusercontent.com/agelmet/TSONIDOU/refs/heads/main/tsonlogo.jpg" alt="Λογότυπο Ραφαέλα Τσονίδου">
+  </div>
   <div class="ld-name">Ραφαέλα Τσονίδου</div>
+  <div class="ld-title">Κλινική Ψυχολόγος</div>
 </div>
 
-<!-- ===== HEADER / NAV ===== -->
 <header id="header">
   <div class="container nav-inner">
     <a href="#top" class="brand" aria-label="Ραφαέλα Τσονίδου — Αρχική">
@@ -457,7 +616,6 @@
   <a href="#contact">Κλείστε ραντεβού</a>
 </div>
 
-<!-- ===== HERO ===== -->
 <section class="hero" id="top">
   <div class="hero-glow"></div>
   <svg class="hero-bg-bird" viewBox="0 0 120 90" fill="none" aria-hidden="true">
@@ -465,11 +623,11 @@
   </svg>
   <div class="container hero-inner">
     <h1>
-      <span class="line"><span>Χώρος να</span></span>
-      <span class="line"><span><em>αναπνεύσεις</em>,</span></span>
-      <span class="line"><span>να ξεκινήσεις ξανά.</span></span>
+      <span class="line"><span>Χώρος για να</span></span>
+      <span class="line"><span><em>αναπνεύσετε</em>,</span></span>
+      <span class="line"><span>χρόνος για εσάς.</span></span>
     </h1>
-    <p class="hero-sub">Κλινική ψυχολόγος και εκπαιδευόμενη ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Ατομικές συνεδρίες ενηλίκων, διαδικτυακά ή δια ζώσης — σε ένα πλαίσιο ασφάλειας, εμπιστοσύνης και ουσιαστικής αλλαγής.</p>
+    <p class="hero-sub">Ονομάζομαι Ραφαέλα Τσονίδου. Είμαι Κλινική Ψυχολόγος και ειδικεύομαι στη Θεραπεία Σχημάτων. Σας υποδέχομαι σε ένα ασφαλές πλαίσιο –διαδικτυακά ή δια ζώσης– με σκοπό την ουσιαστική αλλαγή και τη φροντίδα της ψυχικής σας υγείας.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Κλείστε ραντεβού
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -480,15 +638,13 @@
   <div class="scroll-cue"><span>Κύλιση</span><span class="dot"></span></div>
 </section>
 
-<!-- ===== MARQUEE ===== -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>Θεραπεία Σχημάτων</span><span>Άγχος &amp; Στρες</span><span>Κατάθλιψη</span><span>Κρίσεις Πανικού</span><span>Ατομική Ψυχοθεραπεία</span><span>Φοβίες</span>
-    <span>Θεραπεία Σχημάτων</span><span>Άγχος &amp; Στρες</span><span>Κατάθλιψη</span><span>Κρίσεις Πανικού</span><span>Ατομική Ψυχοθεραπεία</span><span>Φοβίες</span>
+    <span>Θεραπεία Σχημάτων</span><span>Διαχείριση Άγχους</span><span>Συναισθηματική Ευεξία</span><span>Κρίσεις Πανικού</span><span>Ατομική Ψυχοθεραπεία</span><span>Αντιμετώπιση Φοβιών</span>
+    <span>Θεραπεία Σχημάτων</span><span>Διαχείριση Άγχους</span><span>Συναισθηματική Ευεξία</span><span>Κρίσεις Πανικού</span><span>Ατομική Ψυχοθεραπεία</span><span>Αντιμετώπιση Φοβιών</span>
   </div>
 </div>
 
-<!-- ===== ABOUT ===== -->
 <section class="about" id="about">
   <div class="container about-grid">
     <div class="about-media reveal">
@@ -497,148 +653,126 @@
       </div>
       <div class="badge">
         <b>10.0</b>
-        <small>Μέση βαθμολογία από 14 αξιολογήσεις ασθενών</small>
+        <small>Μέση βαθμολογία από 14 αυθεντικές αξιολογήσεις</small>
       </div>
     </div>
     <div class="about-copy">
       <span class="eyebrow reveal">Γνωριμία</span>
-      <h2 class="reveal d1">Η θεραπεία ξεκινά από τη σχέση εμπιστοσύνης.</h2>
-      <p class="reveal d1">Είμαι η Ραφαέλα Τσονίδου, κλινική ψυχολόγος και εκπαιδευόμενη ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Πραγματοποιώ κυρίως διαδικτυακές ατομικές συνεδρίες με ενήλικες, ενώ οι συνεδρίες μπορούν να γίνουν και δια ζώσης κατόπιν συνεννόησης.</p>
-      <p class="reveal d2">Είμαι απόφοιτη του Τμήματος Ψυχολογίας του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης και του Μεταπτυχιακού Προγράμματος Κλινικής Ψυχολογίας του Εθνικού και Καποδιστριακού Πανεπιστημίου Αθηνών. Έχω συνεργαστεί με δημόσιους φορείς ψυχικής υγείας — το Αιγινήτειο Νοσοκομείο και τον ΟΚΑΝΑ — μέσα από τα προγράμματα απεξάρτησης «Αθηνά» για ενήλικες και τη Μονάδα Εφήβων «Ατραπός».</p>
-      <blockquote class="pull-quote reveal d2">«Παρακολουθώ σταθερά σεμινάρια και συνέδρια, με στόχο τη συνεχή επιμόρφωση και την ποιότητα στη φροντίδα.»</blockquote>
+      <h2 class="reveal d1">Όλα ξεκινούν από μια αυθεντική σχέση εμπιστοσύνης.</h2>
+      <p class="reveal d1">Σε ένα ζεστό και προστατευμένο περιβάλλον, δουλεύουμε μαζί για να ανακαλύψετε τις δικές σας εσωτερικές δυνάμεις. Είμαι η Ραφαέλα Τσονίδου, κλινική ψυχολόγος και εκπαιδευόμενη ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Παρέχω εξατομικευμένες συνεδρίες ενηλίκων διαδικτυακά, αλλά και δια ζώσης κατόπιν συνεννόησης.</p>
+      <p class="reveal d2">Ολοκλήρωσα τις σπουδές μου στο Τμήμα Ψυχολογίας του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης (ΑΠΘ) και έλαβα το Μεταπτυχιακό μου δίπλωμα στην Κλινική Ψυχολογία από το Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΕΚΠΑ). Η επαγγελματική μου πορεία περιλαμβάνει συνεργασίες με σημαντικούς δημόσιους φορείς ψυχικής υγείας, όπως το Αιγινήτειο Νοσοκομείο και τον ΟΚΑΝΑ, σε προγράμματα απεξάρτησης ενηλίκων και στη Μονάδα Εφήβων «Ατραπός».</p>
+      <blockquote class="pull-quote reveal d2">«Η συνεχής εξέλιξη και η επιστημονική κατάρτιση αποτελούν τον πυρήνα της θεραπευτικής μου προσέγγισης, διασφαλίζοντας την υψηλότερη ποιότητα στη φροντίδα σας.»</blockquote>
       <div class="credentials reveal d3">
         <span>MSc Κλινικής Ψυχολογίας (ΕΚΠΑ)</span>
         <span>BSc Ψυχολογίας (ΑΠΘ)</span>
         <span>Θεραπεία Σχημάτων</span>
-        <span>Αρ. αδείας 384604</span>
+        <span>Αρ. Αδείας Ασκήσεως Επαγγέλματος: 384604</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== SERVICES / EXPERTISE ===== -->
 <section class="services" id="services">
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">Υπηρεσίες</span>
       <h2>Σε τι μπορώ να σταθώ δίπλα σας</h2>
-      <p>Κάθε συνεδρία διαρκεί 50 λεπτά και προσαρμόζεται στο δικό σας περιστατικό. Τα κόστη είναι ενδεικτικά και επιβεβαιώνονται κατά την επικοινωνία μας.</p>
+      <p>Κάθε συνεδρία διαρκεί 50 λεπτά και είναι απόλυτα προσαρμοσμένη στις δικές σας ανάγκες. Το θεραπευτικό πλάνο και τα κόστη διαμορφώνονται κατόπιν της προσωπικής μας επικοινωνίας.</p>
     </div>
-    <div class="svc-list">
-      <div class="svc-item reveal">
-        <button class="svc-trigger" aria-expanded="false">
-          <span class="svc-num">01</span>
-          <span class="svc-title">Ατομική ψυχοθεραπεία ενηλίκων</span>
-          <span class="svc-plus" aria-hidden="true"></span>
-        </button>
-        <div class="svc-body"><div class="svc-body-inner">
-          Ένα σταθερό, εμπιστευτικό πλαίσιο για να επεξεργαστείτε όσα σας απασχολούν και να χτίσετε πιο λειτουργικούς τρόπους να σχετίζεστε με τον εαυτό σας και τους άλλους. Οι συνεδρίες πραγματοποιούνται διαδικτυακά ή δια ζώσης.
-          <span class="svc-meta">Ατομική συνεδρία · 50 λεπτά</span>
-        </div></div>
+    
+    <div class="svc-grid">
+      
+      <div class="svc-card reveal">
+        <span class="svc-num">01</span>
+        <h3 class="svc-title">Ατομική Ψυχοθεραπεία Ενηλίκων</h3>
+        <p class="svc-desc">Ένα σταθερό, απολύτως εμπιστευτικό πλαίσιο όπου μπορείτε να εκφράσετε ελεύθερα όσα σας βαραίνουν και να αναπτύξετε μια πιο υγιή, λειτουργική σχέση τόσο με τον εαυτό σας όσο και με τους γύρω σας.</p>
+        <div class="svc-meta">Ατομική Συνεδρία · 50 λεπτά</div>
       </div>
-      <div class="svc-item reveal">
-        <button class="svc-trigger" aria-expanded="false">
-          <span class="svc-num">02</span>
-          <span class="svc-title">Θεραπεία Σχημάτων</span>
-          <span class="svc-plus" aria-hidden="true"></span>
-        </button>
-        <div class="svc-body"><div class="svc-body-inner">
-          Μια ολοκληρωμένη προσέγγιση που εντοπίζει τα βαθιά, επαναλαμβανόμενα μοτίβα που διαμορφώθηκαν νωρίς στη ζωή και επηρεάζουν το παρόν. Δουλεύουμε ώστε να κατανοήσετε την προέλευσή τους και να αλλάξετε τον τρόπο που σας επηρεάζουν σήμερα.
-          <span class="svc-meta">Εξειδικευμένη προσέγγιση · 50 λεπτά</span>
-        </div></div>
+      
+      <div class="svc-card reveal d1">
+        <span class="svc-num">02</span>
+        <h3 class="svc-title">Θεραπεία Σχημάτων</h3>
+        <p class="svc-desc">Μια σύγχρονη, ολοκληρωμένη προσέγγιση που στοχεύει στην αναγνώριση των βαθύτερων μοτίβων (σχημάτων) της παιδικής ηλικίας. Δουλεύουμε μαζί για να σπάσουμε τον κύκλο αυτών των συμπεριφορών στο παρόν.</p>
+        <div class="svc-meta">Εξειδικευμένη Προσέγγιση · 50 λεπτά</div>
       </div>
-      <div class="svc-item reveal">
-        <button class="svc-trigger" aria-expanded="false">
-          <span class="svc-num">03</span>
-          <span class="svc-title">Διαχείριση άγχους &amp; στρες</span>
-          <span class="svc-plus" aria-hidden="true"></span>
-        </button>
-        <div class="svc-body"><div class="svc-body-inner">
-          Συμβουλευτική και θεραπευτική υποστήριξη για το άγχος, το στρες της καθημερινότητας και τη συναισθηματική υπερφόρτωση, με πρακτικά εργαλεία και βαθύτερη κατανόηση των αιτιών.
-          <span class="svc-meta">Συμβουλευτική · 50 λεπτά</span>
-        </div></div>
+      
+      <div class="svc-card reveal d2">
+        <span class="svc-num">03</span>
+        <h3 class="svc-title">Διαχείριση Άγχους & Στρες</h3>
+        <p class="svc-desc">Συμβουλευτική και θεραπευτική υποστήριξη απέναντι στο άγχος της καθημερινότητας. Σας εφοδιάζω με πρακτικά εργαλεία και τεχνικές που βοηθούν στην αποφόρτιση και την ουσιαστική κατανόηση των αιτιών του στρες.</p>
+        <div class="svc-meta">Συμβουλευτική · 50 λεπτά</div>
       </div>
-      <div class="svc-item reveal">
-        <button class="svc-trigger" aria-expanded="false">
-          <span class="svc-num">04</span>
-          <span class="svc-title">Κρίσεις πανικού &amp; φοβίες</span>
-          <span class="svc-plus" aria-hidden="true"></span>
-        </button>
-        <div class="svc-body"><div class="svc-body-inner">
-          Στοχευμένη δουλειά για τις κρίσεις πανικού και τις φοβίες, ώστε να ανακτήσετε αίσθηση ελέγχου και ασφάλειας στις καταστάσεις που σήμερα σας περιορίζουν.
-          <span class="svc-meta">Ατομική συνεδρία · 50 λεπτά</span>
-        </div></div>
+      
+      <div class="svc-card reveal">
+        <span class="svc-num">04</span>
+        <h3 class="svc-title">Κρίσεις Πανικού & Φοβίες</h3>
+        <p class="svc-desc">Μέσα από στοχευμένες παρεμβάσεις, δουλεύουμε τις κρίσεις πανικού και τις φοβίες, με σκοπό να ανακτήσετε την αίσθηση του ελέγχου, της ασφάλειας και της ελευθερίας σας σε καταστάσεις που σήμερα φαντάζουν περιοριστικές.</p>
+        <div class="svc-meta">Ατομική Συνεδρία · 50 λεπτά</div>
       </div>
-      <div class="svc-item reveal">
-        <button class="svc-trigger" aria-expanded="false">
-          <span class="svc-num">05</span>
-          <span class="svc-title">Κατάθλιψη &amp; διάθεση</span>
-          <span class="svc-plus" aria-hidden="true"></span>
-        </button>
-        <div class="svc-body"><div class="svc-body-inner">
-          Υποστήριξη για περιόδους κατάθλιψης και χαμηλής διάθεσης, με σεβασμό στον δικό σας ρυθμό και έμφαση στην επανασύνδεση με ό,τι έχει νόημα για εσάς.
-          <span class="svc-meta">Ατομική συνεδρία · 50 λεπτά</span>
-        </div></div>
+      
+      <div class="svc-card reveal d1">
+        <span class="svc-num">05</span>
+        <h3 class="svc-title">Κατάθλιψη & Συναισθηματική Ευεξία</h3>
+        <p class="svc-desc">Ουσιαστική υποστήριξη σε περιόδους βαθιάς θλίψης και απουσίας νοήματος. Με απόλυτο σεβασμό στον προσωπικό σας ρυθμό, εστιάζουμε στην επανασύνδεσή σας με τη χαρά και την εσωτερική γαλήνη.</p>
+        <div class="svc-meta">Ατομική Συνεδρία · 50 λεπτά</div>
       </div>
+      
     </div>
   </div>
 </section>
 
-<!-- ===== PROCESS ===== -->
 <section class="process" id="process">
   <div class="hero-glow"></div>
   <div class="container">
     <div class="sec-head reveal" style="margin-bottom:0">
-      <span class="eyebrow">Η διαδικασία</span>
-      <h2>Απλή αρχή, ουσιαστική πορεία</h2>
+      <span class="eyebrow">Η Διαδικασία</span>
+      <h2>Η πορεία προς την αλλαγή</h2>
     </div>
     <div class="steps">
-      <div class="step reveal"><div class="line"></div><b>01</b><h3>Επικοινωνία</h3><p>Μου γράφετε ή τηλεφωνείτε για ένα πρώτο, ανεπίσημο μήνυμα γνωριμίας και τις απορίες σας.</p></div>
-      <div class="step reveal d1"><div class="line"></div><b>02</b><h3>Πρώτη συνεδρία</h3><p>Συναντιόμαστε διαδικτυακά ή δια ζώσης για να γνωριστούμε και να εντοπίσουμε μαζί τι σας φέρνει εδώ.</p></div>
-      <div class="step reveal d2"><div class="line"></div><b>03</b><h3>Κοινός σχεδιασμός</h3><p>Θέτουμε στόχους και επιλέγουμε την προσέγγιση που ταιριάζει σε εσάς και στο περιστατικό σας.</p></div>
-      <div class="step reveal d3"><div class="line"></div><b>04</b><h3>Πορεία αλλαγής</h3><p>Δουλεύουμε σταθερά, με τον δικό σας ρυθμό, προς πιο λειτουργικούς και ελεύθερους τρόπους ζωής.</p></div>
+      <div class="step reveal"><div class="line"></div><b>01</b><h3>Πρώτη Επαφή</h3><p>Μπορείτε να με καλέσετε ή να μου στείλετε μήνυμα για μια πρώτη, αναγνωριστική επικοινωνία, όπου θα λύσουμε τις βασικές σας απορίες.</p></div>
+      <div class="step reveal d1"><div class="line"></div><b>02</b><h3>Αξιολόγηση & Γνωριμία</h3><p>Πραγματοποιούμε την πρώτη μας συνάντηση για να γνωριστούμε και να κατανοήσουμε σε βάθος τι είναι αυτό που σας οδήγησε στη θεραπεία.</p></div>
+      <div class="step reveal d2"><div class="line"></div><b>03</b><h3>Κοινός Σχεδιασμός</h3><p>Συναποφασίζουμε τους θεραπευτικούς μας στόχους και χαράσσουμε την πορεία που ταιριάζει αποκλειστικά στις δικές σας ανάγκες.</p></div>
+      <div class="step reveal d3"><div class="line"></div><b>04</b><h3>Θεραπευτική Διαδρομή</h3><p>Με σταθερά βήματα και σεβασμό στον δικό σας ρυθμό, προχωράμε προς μια πιο απελευθερωμένη και λειτουργική καθημερινότητα.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ===== VALUES ===== -->
 <section class="values" id="values">
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">Φιλοσοφία</span>
-      <h2>Πώς δουλεύω</h2>
+      <h2>Η Θεραπευτική μου Φιλοσοφία</h2>
     </div>
     <div class="val-grid">
       <div class="val-card reveal">
         <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.6-9.3-9.2C1 8.4 3 5 6.5 5 9 5 12 8 12 8s3-3 5.5-3C21 5 23 8.4 21.3 11.8 19 16.4 12 21 12 21z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h3>Ασφάλεια &amp; εμπιστοσύνη</h3>
-        <p>Ένας χώρος χωρίς κριτική, όπου μπορείτε να εκφραστείτε ανοιχτά. Πολλοί θεραπευόμενοι περιγράφουν αίσθηση ασφάλειας από την πρώτη κιόλας συνεδρία.</p>
+        <h3>Αποδοχή & Ασφάλεια</h3>
+        <p>Προσφέρω έναν φιλόξενο χώρο, απαλλαγμένο από κάθε ίχνος κριτικής, όπου μπορείτε να είστε απόλυτα ο εαυτός σας. Οι θεραπευόμενοι αναφέρουν συχνά μια βαθιά αίσθηση ασφάλειας από την πρώτη κιόλας συνεδρία.</p>
       </div>
       <div class="val-card reveal d1">
         <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7" stroke-linecap="round"/></svg>
-        <h3>Ενσυναίσθηση</h3>
-        <p>Σας ακούω χωρίς βιασύνη και χωρίς υποδείξεις. Η κατανόηση της δικής σας εμπειρίας είναι η αφετηρία κάθε ουσιαστικής δουλειάς.</p>
+        <h3>Βαθιά Ενσυναίσθηση</h3>
+        <p>Στέκομαι δίπλα σας με αληθινό ενδιαφέρον και προσοχή. Η κατανόηση του δικού σας μοναδικού βιώματος αποτελεί την αφετηρία κάθε ουσιαστικής θεραπευτικής παρέμβασης.</p>
       </div>
       <div class="val-card reveal d2">
         <svg class="val-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3" stroke-linecap="round"/></svg>
-        <h3>Επιστημονική βάση</h3>
-        <p>Συνεχής εκπαίδευση, σεμινάρια και συνέδρια. Η πρακτική μου στηρίζεται σε τεκμηριωμένες, σύγχρονες θεραπευτικές προσεγγίσεις.</p>
+        <h3>Επιστημονική Αρτιότητα</h3>
+        <p>Η προσέγγισή μου εδράζεται σε σύγχρονες, τεκμηριωμένες μεθόδους. Επενδύω στη διαρκή μου επιμόρφωση μέσα από εξειδικευμένα σεμινάρια, εποπτείες και συνέδρια του κλάδου.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== REVIEWS ===== -->
 <section class="reviews" id="reviews">
   <div class="container">
     <div class="rev-top reveal">
       <div>
-        <span class="eyebrow">Μαρτυρίες</span>
-        <div class="rev-score" style="margin-top:1.2rem">
+        <span class="eyebrow">Μαρτυρίες Θεραπευόμενων</span>
+        <div class="rev-score" style="margin-top:1.4rem">
           <b>10.0</b>
           <div class="stars">
             <div>★★★★★</div>
-            <small>14 αξιολογήσεις ασθενών</small>
+            <small>14 επιβεβαιωμένες αξιολογήσεις</small>
           </div>
         </div>
       </div>
@@ -652,7 +786,7 @@
       <div class="rev-track" id="revTrack">
         <article class="rev-card">
           <div class="quote-mark">”</div>
-          <p class="rev-text clamp">Δεν θα μπορούσα να φανταστώ μια καλύτερη επιλογή, σε όλο αυτό το ταξίδι αναζήτησης, αμφισβήτησης και επαναπροσδιορισμού! Σ' ευχαριστώ για όλα αυτά που ανακαλύπτουμε παρέα. Είσαι το καλύτερο δώρο που έχω κάνει στον εαυτό μου.</p>
+          <p class="rev-text clamp">Δεν θα μπορούσα να φανταστώ μια καλύτερη επιλογή σε όλο αυτό το ταξίδι αναζήτησης, αμφισβήτησης και επαναπροσδιορισμού! Σε ευχαριστώ για όλα αυτά που ανακαλύπτουμε παρέα. Είσαι το καλύτερο δώρο που έχω κάνει στον εαυτό μου.</p>
           <button class="rev-more">Διαβάστε περισσότερα</button>
           <div class="rev-author"><span class="av">Α</span><div><b>Αναστασία</b><small>Φεβρουάριος 2024</small></div></div>
         </article>
@@ -670,7 +804,7 @@
         </article>
         <article class="rev-card">
           <div class="quote-mark">”</div>
-          <p class="rev-text clamp">Θα ήθελα να εκφράσω την απόλυτή μου ευγνωμοσύνη στην κυρία Τσονίδου που με υποστήριξε σε οικογενειακά θέματα και προβλήματα άγχους. Ο επαγγελματισμός της ήταν εμφανής, παρέχοντας μια ασφαλή ατμόσφαιρα όπου μπορούσα να εκφράσω ανοιχτά τις σκέψεις μου. Η ενσυναίσθησή της έκανε τη διαδικασία πολύ πιο ανεκτή και από την πρώτη συνεδρία με έκανε να αισθανθώ άνετα. Οι στοχευμένες λύσεις της με βοήθησαν να κατανοήσω και να αντιμετωπίσω αποτελεσματικά τα προβλήματά μου.</p>
+          <p class="rev-text clamp">Θα ήθελα να εκφράσω την απόλυτή μου ευγνωμοσύνη στην κυρία Τσονίδου που με υποστήριξε σε οικογενειακά θέματα και προβλήματα άγχους. Ο επαγγελματισμός της ήταν εμφανής, παρέχοντας μια ασφαλή ατμόσφαιρα όπου μπορούσα να εκφράσω ανοιχτά τις σκέψεις μου. Η ενσυναίσθησή της έκανε τη διαδικασία πολύ πιο ανεκτή και από την πρώτη συνεδρία με έκανε να αισθανθώ άνετα.</p>
           <button class="rev-more">Διαβάστε περισσότερα</button>
           <div class="rev-author"><span class="av">Χ</span><div><b>Χρήστος</b><small>Δεκέμβριος 2023</small></div></div>
         </article>
@@ -682,13 +816,13 @@
         </article>
         <article class="rev-card">
           <div class="quote-mark">”</div>
-          <p class="rev-text clamp">Η κα Τσονίδου με βοήθησε πολύ! Έχει ενσυναίσθηση και ένιωσα από πολύ νωρίς ότι με καταλαβαίνει και με στηρίζει! Σίγουρα την συστήνω!</p>
+          <p class="rev-text clamp">Η κα Τσονίδου με βοήθησε πάρα πολύ! Έχει ενσυναίσθηση και ένιωσα από πολύ νωρίς ότι με καταλαβαίνει και με στηρίζει απόλυτα. Σίγουρα την συστήνω!</p>
           <button class="rev-more">Διαβάστε περισσότερα</button>
           <div class="rev-author"><span class="av">Β</span><div><b>Βασιλική</b><small>Δεκέμβριος 2023</small></div></div>
         </article>
         <article class="rev-card">
           <div class="quote-mark">”</div>
-          <p class="rev-text clamp">Εξαιρετικός άνθρωπος και φυσικά επιστήμονας! Σε κάνει να νιώσεις άνετα από την πρώτη στιγμή. Συνδυάζει άρτιες γνώσεις, επικοινωνιακές δεξιότητες και βαθιά ενσυναίσθηση. Η συνεργασία μου μαζί της έφερε σημαντικές αλλαγές στον τρόπο ζωής μου, γι' αυτό και την συνιστώ ανεπιφύλακτα!</p>
+          <p class="rev-text clamp">Εξαιρετικός άνθρωπος και φυσικά επιστήμονας! Σε κάνει να νιώσεις άνετα από την πρώτη στιγμή. Συνδυάζει άρτιες γνώσεις, επικοινωνιακές δεξιότητες και βαθιά ενσυναίσθηση. Η συνεργασία μου μαζί της έφερε σημαντικές αλλαγές στον τρόπο ζωής μου.</p>
           <button class="rev-more">Διαβάστε περισσότερα</button>
           <div class="rev-author"><span class="av">Γ</span><div><b>Γεωργία</b><small>Νοέμβριος 2023</small></div></div>
         </article>
@@ -696,54 +830,52 @@
     </div>
 
     <div class="rev-footer reveal">
-      <a href="https://www.doctoranytime.gr/d/Psychologos/tsonidou-rafaela#review-section" target="_blank" rel="noopener">Δείτε και τις 14 αξιολογήσεις στο doctoranytime →</a>
+      <a href="https://www.doctoranytime.gr/d/Psychologos/tsonidou-rafaela#review-section" target="_blank" rel="noopener">Δείτε και τις 14 αξιολογήσεις στο Doctoranytime →</a>
     </div>
   </div>
 </section>
 
-<!-- ===== FAQ ===== -->
 <section class="faq" id="faq">
   <div class="container faq-grid">
     <div class="faq-aside reveal">
-      <span class="eyebrow">Συχνές ερωτήσεις</span>
-      <h2>Ό,τι καλό είναι να ξέρετε πριν ξεκινήσουμε.</h2>
+      <span class="eyebrow">Συχνές Ερωτήσεις</span>
+      <h2>Χρήσιμες πληροφορίες πριν την πρώτη μας συνάντηση.</h2>
     </div>
     <div class="faq-list">
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">Οι συνεδρίες γίνονται διαδικτυακά ή δια ζώσης;<span class="ic" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>Πραγματοποιώ κυρίως διαδικτυακές ατομικές συνεδρίες με ενήλικες. Οι συνεδρίες μπορούν να γίνουν και δια ζώσης, κατόπιν συνεννόησης μαζί μου.</p></div>
+        <div class="faq-a"><p>Παρέχω κυρίως διαδικτυακές ατομικές συνεδρίες με ενήλικες, γεγονός που προσφέρει ευελιξία και άνεση στον χώρο σας. Ωστόσο, υπάρχει η δυνατότητα και για δια ζώσης συναντήσεις, κατόπιν συνεννόησης.</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">Πόσο διαρκεί μια συνεδρία;<span class="ic" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>Κάθε συνεδρία διαρκεί 50 λεπτά, είτε πραγματοποιείται διαδικτυακά μέσω βιντεοκλήσης είτε δια ζώσης.</p></div>
+        <div class="faq-a"><p>Κάθε ψυχοθεραπευτική συνεδρία διαρκεί ακριβώς 50 λεπτά, είτε πραγματοποιείται μέσω βιντεοκλήσης είτε δια ζώσης στο γραφείο.</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">Σε ποιους απευθύνεστε;<span class="ic" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>Σε ενήλικες που επιθυμούν ατομική ψυχοθεραπεία ή συμβουλευτική υποστήριξη — για άγχος και στρες, κατάθλιψη, κρίσεις πανικού, φοβίες, ή για ευρύτερη επεξεργασία των μοτίβων που τους επηρεάζουν.</p></div>
+        <div class="faq-a"><p>Οι υπηρεσίες μου απευθύνονται αποκλειστικά σε ενήλικες που αναζητούν ατομική ψυχοθεραπεία ή συμβουλευτική. Καλύπτω ζητήματα όπως η διαχείριση άγχους, η κατάθλιψη, οι κρίσεις πανικού, καθώς και η βαθύτερη επεξεργασία χρόνιων δυσλειτουργικών μοτίβων.</p></div>
       </div>
       <div class="faq-item reveal">
-        <button class="faq-q" aria-expanded="false">Τι είναι η Θεραπεία Σχημάτων;<span class="ic" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>Είναι μια ολοκληρωμένη θεραπευτική προσέγγιση που εντοπίζει βαθιά, επαναλαμβανόμενα μοτίβα — τα «σχήματα» — που διαμορφώθηκαν νωρίς στη ζωή και επηρεάζουν τον τρόπο που σκεφτόμαστε, νιώθουμε και σχετιζόμαστε σήμερα.</p></div>
+        <button class="faq-q" aria-expanded="false">Τι ακριβώς είναι η Θεραπεία Σχημάτων;<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Η Θεραπεία Σχημάτων είναι μια καινοτόμος, συνθετική προσέγγιση. Εστιάζει στον εντοπισμό και την τροποποίηση των «σχημάτων» — δηλαδή βαθιά ριζωμένων, επαναλαμβανόμενων μοτίβων σκέψης και συμπεριφοράς που δημιουργήθηκαν στην παιδική ηλικία και συνεχίζουν να προκαλούν δυσκολίες στο παρόν σας.</p></div>
       </div>
       <div class="faq-item reveal">
-        <button class="faq-q" aria-expanded="false">Πώς κλείνω το πρώτο μου ραντεβού;<span class="ic" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>Επικοινωνήστε μαζί μου τηλεφωνικά στο 698 457 7414 ή με email στο rafaelatsonidou@yahoo.gr. Θα κανονίσουμε μαζί την ημέρα και τον τρόπο της πρώτης μας συνεδρίας.</p></div>
+        <button class="faq-q" aria-expanded="false">Πώς μπορώ να κλείσω το πρώτο μου ραντεβού;<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Μπορείτε να επικοινωνήσετε μαζί μου απευθείας στο 698 457 7414 ή στέλνοντας email στο rafaelatsonidou@yahoo.gr. Μαζί θα βρούμε την κατάλληλη ημέρα και ώρα για την πρώτη μας αξιολογητική συνάντηση.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
 <section class="contact" id="contact">
   <div class="hero-glow"></div>
   <div class="container contact-grid">
     <div class="reveal">
       <span class="eyebrow">Επικοινωνία</span>
-      <h2>Ας κάνουμε το <em>πρώτο βήμα</em> μαζί.</h2>
-      <p class="lead">Αν σκέφτεστε να ξεκινήσετε, αυτή είναι η πιο σημαντική κίνηση. Γράψτε μου ή τηλεφωνήστε — χωρίς δέσμευση, για να γνωριστούμε και να δούμε πώς μπορώ να σταθώ δίπλα σας.</p>
+      <h2>Κάντε το <em>πρώτο βήμα</em> προς την αλλαγή.</h2>
+      <p class="lead">Αν σκέφτεστε να ξεκινήσετε ψυχοθεραπεία, η αναζήτηση επικοινωνίας είναι το πιο καθοριστικό βήμα. Καλέστε με ή στείλτε μου μήνυμα, χωρίς καμία απολύτως δέσμευση, για να δούμε πώς μπορώ να σας υποστηρίξω.</p>
       <div class="contact-tags">
-        <span>Ατομικές συνεδρίες ενηλίκων</span>
-        <span>Διαδικτυακά &amp; δια ζώσης ραντεβού</span>
+        <span>Ατομικές Συνεδρίες Ενηλίκων</span>
+        <span>Διαδικτυακά & Δια Ζώσης Ραντεβού</span>
       </div>
     </div>
     <div class="contact-card reveal d1">
@@ -757,19 +889,18 @@
       </a>
       <div class="c-row">
         <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span><small>Διαθεσιμότητα</small><b>Κατόπιν ραντεβού</b></span>
+        <span><small>Διαθεσιμότητα</small><b>Αποκλειστικά Κατόπιν Ραντεβού</b></span>
       </div>
-      <a href="#contact" class="btn-primary contact-cta" style="width:100%;justify-content:center">Κλείστε ραντεβού
+      <a href="#contact" class="btn-primary contact-cta" style="width:100%;justify-content:center;margin-top:1.5rem;">Κλείστε ραντεβού
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
 <footer>
   <div class="container foot-inner">
-    <span>© <span id="yr"></span> Ραφαέλα Τσονίδου · Κλινική Ψυχολόγος · Αρ. αδείας 384604</span>
+    <span>© <span id="yr"></span> Ραφαέλα Τσονίδου · Κλινική Ψυχολόγος · Αρ. Αδείας: 384604</span>
     <span class="foot-license">Σχεδιασμός &amp; ανάπτυξη από <a href="https://www.advonmedia.com" target="_blank" rel="noopener">Advon Media</a></span>
   </div>
 </footer>
@@ -783,13 +914,13 @@
     setTimeout(function(){
       document.getElementById("loader").classList.add("done");
       document.body.classList.add("loaded");
-    },2000);
+    },2200);
   });
   // safety fallback
   setTimeout(function(){
     document.getElementById("loader").classList.add("done");
     document.body.classList.add("loaded");
-  },3500);
+  },3800);
 
   /* ---- Year ---- */
   document.getElementById("yr").textContent=new Date().getFullYear();
@@ -820,25 +951,6 @@
     });
   });
 
-  /* ---- Services accordion ---- */
-  document.querySelectorAll(".svc-trigger").forEach(function(btn){
-    btn.addEventListener("click",function(){
-      var item=btn.closest(".svc-item");
-      var body=item.querySelector(".svc-body");
-      var isOpen=item.classList.contains("open");
-      document.querySelectorAll(".svc-item.open").forEach(function(o){
-        o.classList.remove("open");
-        o.querySelector(".svc-body").style.maxHeight=null;
-        o.querySelector(".svc-trigger").setAttribute("aria-expanded","false");
-      });
-      if(!isOpen){
-        item.classList.add("open");
-        body.style.maxHeight=body.scrollHeight+"px";
-        btn.setAttribute("aria-expanded","true");
-      }
-    });
-  });
-
   /* ---- FAQ accordion ---- */
   document.querySelectorAll(".faq-q").forEach(function(btn){
     btn.addEventListener("click",function(){
@@ -863,7 +975,7 @@
   var step=function(){
     var card=track.querySelector(".rev-card");
     if(!card)return 0;
-    var gap=parseFloat(getComputedStyle(track).gap)||24;
+    var gap=parseFloat(getComputedStyle(track).gap)||32;
     return card.offsetWidth+gap;
   };
   var maxIndex=function(){
