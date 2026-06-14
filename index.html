@@ -72,21 +72,20 @@
   #loader.done{opacity:0;visibility:hidden;transform:scale(1.02);}
   
   .logo-wrapper {
-    width: 140px;
-    height: 140px;
+    width: 220px;
+    height: 220px;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     animation: chicEnter 1.4s var(--ease-out-expo) 0.2s forwards;
-    margin-bottom: 1rem;
     border-radius: 50%;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     overflow: hidden;
   }
   .nav-logo-wrapper {
-    width: 55px;
-    height: 55px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
@@ -106,17 +105,6 @@
     display: block;
   }
   
-  #loader .ld-name{
-    font-family:var(--ff-display);color:var(--paper);font-size:1.4rem;letter-spacing:.25em;
-    text-transform:uppercase;opacity:0;transform:translateY(15px);
-    animation:fadeUp 1s var(--ease-out-expo) 0.8s forwards;
-  }
-  #loader .ld-title{
-    font-family:var(--ff-body);color:var(--taupe);font-size:0.75rem;letter-spacing:.35em;
-    text-transform:uppercase;opacity:0;transform:translateY(15px);
-    animation:fadeUp 1s var(--ease-out-expo) 1s forwards;
-  }
-  
   @keyframes chicEnter {
     0% { opacity: 0; transform: scale(0.75) translateY(30px); filter: blur(10px); }
     100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
@@ -127,19 +115,14 @@
   header{
     position:fixed;top:0;left:0;width:100%;z-index:900;
     transition:background .6s var(--ease-soft),box-shadow .6s,padding .6s;
-    padding:1.5rem 0;
+    padding:1.2rem 0;
   }
   header.scrolled{
     background:rgba(251,249,244,.92);backdrop-filter:blur(18px);
-    box-shadow:0 4px 20px rgba(36,59,55,.06);padding:.85rem 0;
+    box-shadow:0 4px 20px rgba(36,59,55,.06);padding:.6rem 0;
   }
   .nav-inner{display:flex;align-items:center;justify-content:space-between;}
-  .brand{display:flex;align-items:center;gap:.8rem;}
-  .brand-text{display:flex;flex-direction:column;line-height:1.05;}
-  .brand-text b{font-family:var(--ff-display);font-weight:500;font-size:1.08rem;color:var(--teal-ink);letter-spacing:.01em;transition:color .4s;}
-  .brand-text span{font-family:var(--ff-body);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);transition:color .4s;}
-  header:not(.scrolled) .brand-text b{color:var(--paper);}
-  header:not(.scrolled) .brand-text span{color:var(--mist);}
+  .brand{display:flex;align-items:center;}
 
   nav ul{display:flex;align-items:center;gap:2.4rem;list-style:none;}
   nav a{font-size:.86rem;letter-spacing:.02em;position:relative;font-weight:500;transition:color .4s;}
@@ -319,10 +302,31 @@
   /* ============ ABOUT ============ */
   .about{padding:var(--pad-section) 0;background:var(--paper); position: relative; z-index: 1;}
   .about::before {
-    content:""; position:absolute; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at right center, rgba(201,187,166,0.15), transparent 60%); z-index: -1; pointer-events: none;
+    content:""; position:absolute; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at left center, rgba(201,187,166,0.15), transparent 60%); z-index: -1; pointer-events: none;
   }
-  .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(3.5rem,7vw,7rem);align-items:center;}
-  .about-media{position:relative;}
+  
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 1.5rem clamp(3.5rem, 6vw, 6rem);
+    align-items: center;
+  }
+  .about-copy-top {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+  }
+  .about-copy-bottom {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+  }
+  .about-media {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    position:relative;
+  }
+
   .about-media::before {
     content: ""; position: absolute; inset: -25px; background: radial-gradient(circle, rgba(94,138,127,0.2) 0%, transparent 60%); filter: blur(30px); z-index: -1; border-radius: 50%; transition: all 1s ease;
   }
@@ -605,9 +609,13 @@
     .hero-image { max-height: 50vh; border-radius: 12px 60px 12px 12px; margin-top: 2rem; }
     .hero .line span { transform-origin: center bottom; }
     
-    .about-grid,.contact-grid{grid-template-columns:1fr;}
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-copy-top { grid-column: 1; grid-row: 1; }
+    .about-media { grid-column: 1; grid-row: 2; max-width: 500px; margin: 0 auto; }
+    .about-copy-bottom { grid-column: 1; grid-row: 3; }
+    
+    .contact-grid{grid-template-columns:1fr;}
     .steps {grid-template-columns:1fr 1fr;}
-    .about-media{max-width:500px;margin:0 auto;}
     
     .values-layout { grid-template-columns: 1fr; }
     .values-media { order: -1; border-radius: 60px 12px 12px 12px; }
@@ -633,23 +641,18 @@
 </head>
 <body>
 
-<!-- ===== LOADER ===== -->
 <div id="loader" aria-hidden="true">
   <div class="logo-wrapper">
     <img src="https://raw.githubusercontent.com/agelmet/TSONIDOU/refs/heads/main/tsonlogo.jpg" alt="Λογότυπο Ραφαέλα Τσονίδου">
   </div>
-  <div class="ld-name">Ραφαέλα Τσονίδου</div>
-  <div class="ld-title">Κλινική Ψυχολόγος</div>
 </div>
 
-<!-- ===== HEADER / NAV ===== -->
 <header id="header">
   <div class="container nav-inner">
     <a href="#top" class="brand" aria-label="Ραφαέλα Τσονίδου — Αρχική">
       <div class="nav-logo-wrapper" aria-hidden="true">
         <img src="https://raw.githubusercontent.com/agelmet/TSONIDOU/refs/heads/main/tsonlogo.jpg" alt="Λογότυπο">
       </div>
-      <span class="brand-text"><b>Ραφαέλα Τσονίδου</b><span>Κλινική Ψυχολόγος</span></span>
     </a>
     <nav aria-label="Κύρια πλοήγηση">
       <ul>
@@ -675,7 +678,6 @@
   <a href="#contact">Κλείστε ραντεβού</a>
 </div>
 
-<!-- ===== HERO ===== -->
 <section class="hero" id="top">
   <div class="hero-glow"></div>
   <svg class="hero-bg-bird" viewBox="0 0 120 90" fill="none" aria-hidden="true">
@@ -703,19 +705,22 @@
   <div class="scroll-cue"><span>Κύλιση</span><span class="dot"></span></div>
 </section>
 
-<!-- ===== ABOUT ===== -->
 <section class="about" id="about">
   <div class="container about-grid">
+    <div class="about-copy-top">
+      <span class="eyebrow reveal">Γνωριμία</span>
+      <h2 class="reveal d1">Όλα ξεκινούν από μια αυθεντική σχέση εμπιστοσύνης.</h2>
+      <p class="reveal d1">Σε ένα ζεστό και προστατευμένο περιβάλλον, δουλεύουμε μαζί για να ανακαλύψετε τις δικές σας εσωτερικές δυνάμεις. Είμαι η Ραφαέλα Τσονίδου, κλινική ψυχολόγος και εκπαιδευόμενη ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Παρέχω εξατομικευμένες συνεδρίες ενηλίκων διαδικτυακά, αλλά και δια ζώσης κατόπιν συνεννόησης.</p>
+      <p class="reveal d2">Ολοκλήρωσα τις σπουδές μου στο Τμήμα Ψυχολογίας του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης (ΑΠΘ) και έλαβα το Μεταπτυχιακό μου δίπλωμα στην Κλινική Ψυχολογία από το Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΕΚΠΑ). Η επαγγελματική μου πορεία περιλαμβάνει συνεργασίες με σημαντικούς δημόσιους φορείς ψυχικής υγείας, όπως το Αιγινήτειο Νοσοκομείο και τον ΟΚΑΝΑ, σε προγράμματα απεξάρτησης ενηλίκων και στη Μονάδα Εφήβων «Ατραπός».</p>
+    </div>
+    
     <div class="about-media reveal">
       <div class="frame">
         <img src="https://raw.githubusercontent.com/agelmet/TSONIDOU/refs/heads/main/DSC_0733.jpg" alt="Η Ραφαέλα Τσονίδου, κλινική ψυχολόγος" loading="lazy">
       </div>
     </div>
-    <div class="about-copy">
-      <span class="eyebrow reveal">Γνωριμία</span>
-      <h2 class="reveal d1">Όλα ξεκινούν από μια αυθεντική σχέση εμπιστοσύνης.</h2>
-      <p class="reveal d1">Σε ένα ζεστό και προστατευμένο περιβάλλον, δουλεύουμε μαζί για να ανακαλύψετε τις δικές σας εσωτερικές δυνάμεις. Είμαι η Ραφαέλα Τσονίδου, κλινική ψυχολόγος και εκπαιδευόμενη ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Παρέχω εξατομικευμένες συνεδρίες ενηλίκων διαδικτυακά, αλλά και δια ζώσης κατόπιν συνεννόησης.</p>
-      <p class="reveal d2">Ολοκλήρωσα τις σπουδές μου στο Τμήμα Ψυχολογίας του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης (ΑΠΘ) και έλαβα το Μεταπτυχιακό μου δίπλωμα στην Κλινική Ψυχολογία από το Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΕΚΠΑ). Η επαγγελματική μου πορεία περιλαμβάνει συνεργασίες με σημαντικούς δημόσιους φορείς ψυχικής υγείας, όπως το Αιγινήτειο Νοσοκομείο και τον ΟΚΑΝΑ, σε προγράμματα απεξάρτησης ενηλίκων και στη Μονάδα Εφήβων «Ατραπός».</p>
+
+    <div class="about-copy-bottom">
       <blockquote class="pull-quote reveal d2">«Η συνεχής εξέλιξη και η επιστημονική κατάρτιση αποτελούν τον πυρήνα της θεραπευτικής μου προσέγγισης, διασφαλίζοντας την υψηλότερη ποιότητα στη φροντίδα σας.»</blockquote>
       <div class="credentials reveal d3">
         <span>MSc Κλινικής Ψυχολογίας (ΕΚΠΑ)</span>
@@ -727,7 +732,6 @@
   </div>
 </section>
 
-<!-- ===== SERVICES / EXPERTISE (SYMMETRICAL) ===== -->
 <section class="services" id="services">
   <div class="container">
     <div class="sec-head reveal">
@@ -777,7 +781,6 @@
   </div>
 </section>
 
-<!-- ===== PROCESS ===== -->
 <section class="process" id="process">
   <div class="hero-glow"></div>
   <div class="container">
@@ -794,7 +797,6 @@
   </div>
 </section>
 
-<!-- ===== VALUES ===== -->
 <section class="values" id="values">
   <div class="container values-layout">
     <div class="values-media reveal">
@@ -826,7 +828,6 @@
   </div>
 </section>
 
-<!-- ===== REVIEWS ===== -->
 <section class="reviews" id="reviews">
   <div class="container">
     <div class="rev-top reveal">
@@ -887,12 +888,11 @@
     </div>
 
     <div class="rev-footer reveal">
-      <a href="https://www.doctoranytime.gr/d/Psychologos/tsonidou-rafaela#review-section" target="_blank" rel="noopener">Δείτε και τις 14 αξιολογήσεις στο Doctoranytime →</a>
+      <a href="https://www.doctoranytime.gr/d/Psychologos/tsonidou-rafaela#review-section" target="_blank" rel="noopener">Διαβάστε περισσότερες αξιολογήσεις στο Doctoranytime →</a>
     </div>
   </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
 <section class="contact" id="contact">
   <div class="hero-glow"></div>
   <div class="container contact-grid">
@@ -925,7 +925,6 @@
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
 <footer>
   <div class="container foot-inner">
     <span>© <span id="yr"></span> Ραφαέλα Τσονίδου · Κλινική Ψυχολόγος · Αρ. Αδείας: 384604</span>
