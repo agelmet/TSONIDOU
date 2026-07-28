@@ -152,7 +152,7 @@
   .burger span:nth-child(1){top:0;}
   .burger span:nth-child(2){top:9px;}
   .burger span:nth-child(3){top:18px;}
-  body.menu-open .burger { opacity: 0; pointer-events: none; } /* Hide default burger when menu opens */
+  body.menu-open .burger { opacity: 0; pointer-events: none; }
 
   .mobile-menu{
     position:fixed;inset:0;z-index:1000;background:var(--teal-ink);
@@ -162,7 +162,6 @@
   }
   body.menu-open .mobile-menu{opacity:1;visibility:visible;}
   
-  /* Clear X Button for mobile menu */
   .mobile-close-btn {
     position: absolute;
     top: 1.5rem;
@@ -198,7 +197,6 @@
   body.menu-open .mobile-menu a:nth-child(4){transition-delay:.24s;}
   body.menu-open .mobile-menu a:nth-child(5){transition-delay:.30s;}
   body.menu-open .mobile-menu a:nth-child(6){transition-delay:.36s;}
-  body.menu-open .mobile-menu a:nth-child(7){transition-delay:.42s;}
 
   /* ============ HERO ============ */
   .hero{
@@ -374,7 +372,7 @@
   .credentials span{font-size:.8rem;letter-spacing:.05em;padding:.6rem 1.2rem;border:1px solid var(--taupe);border-radius:100px;color:var(--teal-deep);background:transparent; transition: all 0.4s ease;}
   .credentials span:hover { background: var(--teal); color: var(--paper); border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(94,138,127,.2); }
 
-  /* ============ EXPERTISE / SERVICES (SYMMETRICAL) ============ */
+  /* ============ EXPERTISE / SERVICES ============ */
   .services{padding:var(--pad-section) 0;background:var(--linen);position:relative; z-index: 1;}
   .sec-head{max-width:640px;margin-bottom:clamp(3.5rem,6vw,5rem);}
   .sec-head h2{font-size:clamp(1.8rem,3.5vw,3rem);color:var(--teal-ink);margin-top:1.2rem;}
@@ -382,7 +380,7 @@
   
   .svc-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
   .svc-card {
@@ -468,36 +466,13 @@
     background: currentColor;
   }
 
-  @media(min-width: 981px) {
-    .svc-card:nth-child(1), .svc-card:nth-child(2), .svc-card:nth-child(3) { grid-column: span 2; }
-    .svc-card:nth-child(4) { grid-column: 2 / 4; }
-    .svc-card:nth-child(5) { grid-column: 4 / 6; }
-  }
   @media(max-width: 980px) and (min-width: 681px) {
     .svc-grid { grid-template-columns: repeat(2, 1fr); }
-    .svc-card { grid-column: span 1 !important; }
-    .svc-card:nth-child(5) { grid-column: 1 / 3 !important; }
+    .svc-card:nth-child(3) { grid-column: 1 / 3; }
   }
   @media(max-width: 680px) {
     .svc-grid { grid-template-columns: 1fr; }
-    .svc-card { grid-column: span 1 !important; }
   }
-
-  /* ============ PROCESS ============ */
-  .process{padding:var(--pad-section) 0;background:var(--teal-ink);color:var(--paper);position:relative;overflow:hidden;}
-  .process .hero-glow{opacity:.5;animation-duration:18s; filter: blur(50px);}
-  .process .eyebrow{color:var(--mist);}
-  .process .eyebrow::before{background:var(--mist);}
-  .process h2{color:var(--paper);font-size:clamp(1.8rem,3.5vw,3rem);margin-top:1.2rem;max-width:18ch;}
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:clamp(3.5rem,6vw,5rem);position:relative;z-index:2;}
-  .step{position:relative;padding-top:2.6rem; transition: transform 0.5s ease;}
-  .step:hover { transform: translateY(-8px); }
-  .step .line{position:absolute;top:0;left:0;width:100%;height:1px;background:rgba(217,226,221,.15);}
-  .step .line::before{content:"";position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;background:var(--teal); transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s;}
-  .step:hover .line::before { transform: scale(1.6); box-shadow: 0 0 15px var(--teal); }
-  .step b{font-family:var(--ff-display);font-size:2.4rem;font-weight:300;color:var(--teal);display:block;line-height:1; opacity: 0.8;}
-  .step h3{font-size:1.15rem;margin:1.2rem 0 .8rem;color:var(--paper);font-weight:500;}
-  .step p{color:var(--mist);font-size:.95rem;line-height:1.65; opacity: 0.9;}
 
   /* ============ VALUES ============ */
   .values{padding:var(--pad-section) 0;background:var(--paper); position: relative;}
@@ -565,6 +540,7 @@
     border:1px solid var(--taupe);display:flex;flex-direction:column;
     box-shadow: 0 15px 35px -15px rgba(0,0,0,0.06);
     transition: transform 0.5s ease;
+    user-select: none;
   }
   .rev-card:hover { transform: translateY(-5px); box-shadow: 0 25px 45px -15px rgba(0,0,0,0.1); }
   .rev-card .quote-mark{font-family:var(--ff-display);font-size:3rem;color:var(--teal);line-height:.5;height:1.4rem; opacity: 0.6;}
@@ -638,7 +614,6 @@
     .about-copy-bottom { grid-column: 1; grid-row: 3; }
     
     .contact-grid{grid-template-columns:1fr;}
-    .steps {grid-template-columns:1fr 1fr;}
     
     .values-layout { grid-template-columns: 1fr; }
     .values-media { order: -1; border-radius: 60px 12px 12px 12px; }
@@ -647,7 +622,6 @@
   @media(max-width:680px){
     nav ul{display:none;}
     .burger{display:block;}
-    .steps {grid-template-columns:1fr;}
     .rev-card{flex:0 0 88%; padding: 2rem 1.8rem;}
     .rev-top{align-items:center;}
     .hero h1{letter-spacing:-.02em;}
@@ -683,7 +657,7 @@
       <ul>
         <li><a href="#about">Γνωριμία</a></li>
         <li><a href="#services">Υπηρεσίες</a></li>
-        <li><a href="#process">Διαδικασία</a></li>
+        <li><a href="#values">Φιλοσοφία</a></li>
         <li><a href="#reviews">Αξιολογήσεις</a></li>
         <li><a href="#contact" class="nav-cta">Κλείστε ραντεβού</a></li>
       </ul>
@@ -700,7 +674,6 @@
   </button>
   <a href="#about">Γνωριμία</a>
   <a href="#services">Υπηρεσίες</a>
-  <a href="#process">Διαδικασία</a>
   <a href="#values">Φιλοσοφία</a>
   <a href="#reviews">Αξιολογήσεις</a>
   <a href="#contact">Κλείστε ραντεβού</a>
@@ -718,11 +691,11 @@
     </div>
     <div class="hero-content">
       <h1>
-        <span class="line"><span>Αποδομώντας τα</span></span>
-        <span class="line"><span><em>μοτίβα</em> που</span></span>
-        <span class="line"><span>σας κρατούν πίσω.</span></span>
+        <span class="line"><span>Φροντίζοντας</span></span>
+        <span class="line"><span>τις <em>πραγματικές</em></span></span>
+        <span class="line"><span>σας ανάγκες.</span></span>
       </h1>
-      <p class="hero-sub">Ως Κλινική Ψυχολόγος, αξιοποιώ τη Θεραπεία Σχημάτων για να σας βοηθήσω να κατανοήσετε τις βαθύτερες ρίζες των δυσκολιών σας. Ένα ασφαλές πλαίσιο — διαδικτυακά ή δια ζώσης — για όσους αναζητούν μόνιμη, ουσιαστική αλλαγή.</p>
+      <p class="hero-sub">Ως Κλινική Ψυχολόγος και Ψυχοθεραπεύτρια της Θεραπείας Σχημάτων, είμαι εδώ για να σας βοηθήσω να κατανοήσουμε πιθανά μοτίβα που επαναλαμβάνονται στη ζωή σας και δυσκολεύουν την καθημερινότητά σας και τις σχέσεις σας.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">Κλείστε ραντεβού
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -740,8 +713,8 @@
     <div class="about-copy-top">
       <span class="eyebrow reveal">Γνωριμία</span>
       <h2 class="reveal d1">Όλα ξεκινούν από μια αυθεντική σχέση εμπιστοσύνης.</h2>
-      <p class="reveal d1">Σε ένα ζεστό και προστατευμένο περιβάλλον, δουλεύουμε μαζί για να ανακαλύψετε τις δικές σας εσωτερικές δυνάμεις. Είμαι η Ραφαέλα Τσονίδου, κλινική ψυχολόγος και εκπαιδευόμενη ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Παρέχω εξατομικευμένες συνεδρίες ενηλίκων διαδικτυακά, αλλά και δια ζώσης κατόπιν συνεννόησης.</p>
-      <p class="reveal d2">Ολοκλήρωσα τις σπουδές μου στο Τμήμα Ψυχολογίας του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης (ΑΠΘ) και έλαβα το Μεταπτυχιακό μου δίπλωμα στην Κλινική Ψυχολογία από το Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΕΚΠΑ). Η επαγγελματική μου πορεία περιλαμβάνει συνεργασίες με σημαντικούς δημόσιους φορείς ψυχικής υγείας, όπως το Αιγινήτειο Νοσοκομείο και τον ΟΚΑΝΑ, σε προγράμματα απεξάρτησης ενηλίκων και στη Μονάδα Εφήβων «Ατραπός».</p>
+      <p class="reveal d1">Σε ένα ζεστό και προστατευμένο περιβάλλον αποδοχής, δουλεύουμε μαζί για να ανακαλύψετε και να κατανοήσετε τα συναισθήματά σας και παλαιότερες εμπειρίες σας που συνδέονται με αυτά. Είμαι η Ραφαέλα Τσονίδου, κλινική ψυχολόγος και εκπαιδευόμενη ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Παρέχω εξατομικευμένες συνεδρίες ενηλίκων διαδικτυακά, αλλά και δια ζώσης κατόπιν συνεννόησης.</p>
+      <p class="reveal d2">Ολοκλήρωσα τις σπουδές μου στο Τμήμα Ψυχολογίας του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης (ΑΠΘ) και έλαβα το Μεταπτυχιακό μου δίπλωμα στην Κλινική Ψυχολογία από το Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΕΚΠΑ). Η επαγγελματική μου πορεία περιλαμβάνει συνεργασίες με σημαντικές δομές όπως τη Μονάδα Θεραπείας Εφήβων «Ατραπός» και το πρόγραμμα εξαρτήσεων «Αθηνά» του Αιγινητείου Νοσοκομείου, τα οποία πλέον υπάγονται όλα στον Εθνικό Οργανισμό Πρόληψης και Αντιμετώπισης Εξαρτήσεων (ΕΟΠΑΕ).</p>
     </div>
     
     <div class="about-media reveal">
@@ -762,7 +735,7 @@
   </div>
 </section>
 
-<!-- ===== SERVICES / EXPERTISE (SYMMETRICAL) ===== -->
+<!-- ===== EXPERTISE / SERVICES ===== -->
 <section class="services" id="services">
   <div class="container">
     <div class="sec-head reveal">
@@ -783,48 +756,17 @@
       <div class="svc-card reveal d1">
         <div class="bg-num">02</div>
         <h3 class="svc-title">Θεραπεία Σχημάτων</h3>
-        <p class="svc-desc">Μια σύγχρονη, ολοκληρωμένη προσέγγιση που στοχεύει στην αναγνώριση των βαθύτερων μοτίβων (σχημάτων) της παιδικής ηλικίας. Δουλεύουμε μαζί για να σπάσουμε τον κύκλο αυτών των συμπεριφορών στο παρόν.</p>
+        <p class="svc-desc">Μια σύγχρονη, ολοκληρωμένη προσέγγιση που στοχεύει στην αναγνώριση των βαθύτερων μοτίβων (σχημάτων) της παιδικής ηλικίας. Δουλεύουμε μαζί για να έρθετε σε επαφή με την ευαλωτότητά σας, καθώς και με δυσλειτουργικά συμπεράσματα που έχουν δομηθεί στην πορεία της ζωής σας και πιθανόν δημιουργούν δυσκολίες σε σημαντικές σας σχέσεις, είτε αυτή είναι με τον εαυτό σας είτε με τους άλλους.</p>
         <div class="svc-meta">Εξειδικευμένη Προσέγγιση</div>
       </div>
       
       <div class="svc-card reveal d2">
         <div class="bg-num">03</div>
-        <h3 class="svc-title">Διαχείριση Άγχους & Στρες</h3>
-        <p class="svc-desc">Συμβουλευτική και θεραπευτική υποστήριξη απέναντι στο άγχος της καθημερινότητας. Σας εφοδιάζω με πρακτικά εργαλεία και τεχνικές που βοηθούν στην αποφόρτιση και την ουσιαστική κατανόηση των αιτιών του στρες.</p>
-        <div class="svc-meta">Συμβουλευτική</div>
+        <h3 class="svc-title">Κατανόηση της Ψυχικής Πραγματικότητας</h3>
+        <p class="svc-desc">Μέσα από ένα εξατομικευμένο πρόγραμμα παρέμβασης και θεραπείας, με απόλυτο σεβασμό στον ρυθμό του κάθε ανθρώπου και τις επιθυμίες σας, μπορούμε να δουλέψουμε πάνω σε ένα ευρύ φάσμα ψυχικών και συναισθηματικών δυσκολιών, προσεγγίζοντας τον ψυχισμό ως ένα συνεχές εμπειριών και όχι ως μια αυστηρή διάκριση υγείας και παθολογίας.</p>
+        <div class="svc-meta">Κλινική Πράξη</div>
       </div>
       
-      <div class="svc-card reveal">
-        <div class="bg-num">04</div>
-        <h3 class="svc-title">Κρίσεις Πανικού & Φοβίες</h3>
-        <p class="svc-desc">Μέσα από στοχευμένες παρεμβάσεις, δουλεύουμε τις κρίσεις πανικού και τις φοβίες, με σκοπό να ανακτήσετε την αίσθηση του ελέγχου, της ασφάλειας και της ελευθερίας σας σε καταστάσεις που σήμερα φαντάζουν περιοριστικές.</p>
-        <div class="svc-meta">Ατομική Συνεδρία</div>
-      </div>
-      
-      <div class="svc-card reveal d1">
-        <div class="bg-num">05</div>
-        <h3 class="svc-title">Κατάθλιψη & Συναισθηματική Ευεξία</h3>
-        <p class="svc-desc">Ουσιαστική υποστήριξη σε περιόδους βαθιάς θλίψης και απουσίας νοήματος. Με απόλυτο σεβασμό στον προσωπικό σας ρυθμό, εστιάζουμε στην επανασύνδεσή σας με τη χαρά και την εσωτερική γαλήνη.</p>
-        <div class="svc-meta">Ατομική Συνεδρία</div>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-<!-- ===== PROCESS ===== -->
-<section class="process" id="process">
-  <div class="hero-glow"></div>
-  <div class="container">
-    <div class="sec-head reveal" style="margin-bottom:0">
-      <span class="eyebrow">Η Διαδικασία</span>
-      <h2>Η πορεία προς την αλλαγή</h2>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><div class="line"></div><b>01</b><h3>Πρώτη Επαφή</h3><p>Μπορείτε να με καλέσετε ή να μου στείλετε μήνυμα για μια πρώτη, αναγνωριστική επικοινωνία.</p></div>
-      <div class="step reveal d1"><div class="line"></div><b>02</b><h3>Αξιολόγηση</h3><p>Πραγματοποιούμε την πρώτη μας συνάντηση για να κατανοήσουμε σε βάθος τι σας οδήγησε εδώ.</p></div>
-      <div class="step reveal d2"><div class="line"></div><b>03</b><h3>Σχεδιασμός</h3><p>Συναποφασίζουμε τους στόχους και χαράσσουμε την πορεία που ταιριάζει στις ανάγκες σας.</p></div>
-      <div class="step reveal d3"><div class="line"></div><b>04</b><h3>Θεραπεία</h3><p>Με σταθερά βήματα, προχωράμε προς μια πιο απελευθερωμένη και λειτουργική καθημερινότητα.</p></div>
     </div>
   </div>
 </section>
