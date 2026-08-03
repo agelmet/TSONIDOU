@@ -120,39 +120,34 @@
     padding:1.2rem 0;
   }
   header.scrolled{
-    background:rgba(251,249,244,.92);backdrop-filter:blur(18px);
-    box-shadow:0 4px 20px rgba(36,59,55,.06);padding:.6rem 0;
+    background:rgba(36,59,55,.96);
+    backdrop-filter:blur(18px);
+    box-shadow:0 4px 20px rgba(0,0,0,.15);
+    padding:.6rem 0;
   }
   .nav-inner{display:flex;align-items:center;justify-content:space-between;}
   .brand{display:flex;align-items:center;}
 
   nav ul{display:flex;align-items:center;gap:2.4rem;list-style:none;}
-  nav a{font-size:.86rem;letter-spacing:.02em;position:relative;font-weight:500;transition:color .4s;}
+  nav a{font-size:.86rem;letter-spacing:.02em;position:relative;font-weight:500;color:var(--paper);transition:color .4s;}
   nav a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1.5px;background:currentColor;transition:width .4s var(--ease-out-expo);}
   nav a:hover::after{width:100%;}
-  header:not(.scrolled) nav > ul > li > a{color:var(--paper);}
   
   .nav-cta{
-    border:1.5px solid var(--teal);color:var(--teal)!important;
+    border:1.5px solid var(--mist);color:var(--paper)!important;
     padding:.62rem 1.6rem;border-radius:100px;font-weight:600;
     transition:all .4s var(--ease-out-expo);
     box-shadow: 0 4px 15px transparent;
   }
   .nav-cta::after{display:none;}
   .nav-cta:hover{
-    background:var(--teal);color:var(--paper)!important;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(94,138,127,.25);
-  }
-  header:not(.scrolled) .nav-cta{border-color:var(--mist);color:var(--paper)!important;}
-  header:not(.scrolled) .nav-cta:hover{
     background:var(--paper);color:var(--teal-ink)!important;border-color:var(--paper);
+    transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255,255,255,.2);
   }
 
   .burger{display:none;width:30px;height:20px;position:relative;z-index:1001;transition: opacity 0.3s;}
-  .burger span{position:absolute;left:0;width:100%;height:2px;background:var(--teal-ink);transition:.4s var(--ease-out-expo);}
-  header:not(.scrolled) .burger span{background:var(--paper);}
+  .burger span{position:absolute;left:0;width:100%;height:2px;background:var(--paper);transition:.4s var(--ease-out-expo);}
   .burger span:nth-child(1){top:0;}
   .burger span:nth-child(2){top:9px;}
   .burger span:nth-child(3){top:18px;}
@@ -718,7 +713,7 @@
       <span class="eyebrow reveal">Γνωριμία</span>
       <h2 class="reveal d1">Όλα ξεκινούν από μια αυθεντική σχέση εμπιστοσύνης.</h2>
       <p class="reveal d1">Σε ένα ζεστό και προστατευμένο περιβάλλον αποδοχής, δουλεύουμε μαζί για να ανακαλύψετε και να κατανοήσετε τα συναισθήματά σας και παλαιότερες εμπειρίες σας που συνδέονται με αυτά. Είμαι η Ραφαέλα Τσονίδου, κλινική ψυχολόγος και εκπαιδευόμενη ψυχοθεραπεύτρια Θεραπείας Σχημάτων. Παρέχω εξατομικευμένες συνεδρίες ενηλίκων διαδικτυακά, αλλά και δια ζώσης κατόπιν συνεννόησης.</p>
-      <p class="reveal d2">Ολοκλήρωσα τις σπουδές μου στο Τμήμα Ψυχολογίας του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης (ΑΠΘ) και έλαβα το Μεταπτυχιακό μου δίπλωμα στην Κλινική Ψυχολογία από το Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΕΚΠΑ). Η επαγγελματική μου πορεία περιλαμβάνει συνεργασίες με σημαντικές δομές όπως τη Μονάδα Θεραπείας Εφήβων «Ατραπός» και το πρόγραμμα εξαρτήσεων «Αθηνά» του Αιγινητείου Νοσοκομείου, τα οποία πλέον υπάγονται όλα στον Εθνικό Οργανισμό Πρόληψης και Αντιμετώπισης Εξαρτήσεων (ΕΟΠΑΕ).</p>
+      <p class="reveal d2">Ολοκλήρωσα τις σπουδές μου στο Τμήμα Ψυχολογίας του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης (ΑΠΘ) και έλαβα το Μεταπτυχιακό μου δίπλωμα στην Κλινική Ψυχολογία από το Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών (ΕΚΠΑ). Η επαγγελματική μου πορεία περιλαμβάνει συνεργασίες με σημαντικές δομές όπως τη μονάδα θεραπείας εφήβων «Ατραπός» και το πρόγραμμα εξαρτήσεων Αθηνά του Αιγινητείου Νοσοκομείου, τα οποία πλέον υπάγονται όλα στον εθνικό οργανισμό πρόληψης και αντιμετώπισης εξαρτήσεων ΕΟΠΑΕ.</p>
     </div>
     
     <div class="about-media reveal">
@@ -760,14 +755,14 @@
       <div class="svc-card reveal d1">
         <div class="bg-num">02</div>
         <h3 class="svc-title">Θεραπεία Σχημάτων</h3>
-        <p class="svc-desc">Μια σύγχρονη, ολοκληρωμένη προσέγγιση που στοχεύει στην αναγνώριση των βαθύτερων μοτίβων (σχημάτων) της παιδικής ηλικίας. Δουλεύουμε μαζί για να έρθετε σε επαφή με την ευαλωτότητά σας, καθώς και με δυσλειτουργικά συμπεράσματα που έχουν δομηθεί στην πορεία της ζωής σας και πιθανόν δημιουργούν δυσκολίες σε σημαντικές σας σχέσεις, είτε αυτή είναι με τον εαυτό σας είτε με τους άλλους.</p>
+        <p class="svc-desc">Μια σύγχρονη, ολοκληρωμένη προσέγγιση που στοχεύει στην αναγνώριση των βαθύτερων μοτίβων (σχημάτων) της παιδικής ηλικίας. Δουλεύουμε μαζί για να έρθετε σε επαφή με την ευαλωτότητά σας καθώς και δυσλειτουργικά συμπεράσματα που έχουν δομηθεί στην πορεία της ζωής σας και πιθανόν δημιουργούν δυσκολίες σε σημαντικές σας σχέσεις, είτε αυτή είναι με τον εαυτό σας είτε με τους άλλους.</p>
         <div class="svc-meta">Εξειδικευμένη Προσέγγιση</div>
       </div>
       
       <div class="svc-card reveal d2">
         <div class="bg-num">03</div>
         <h3 class="svc-title">Κατανόηση της Ψυχικής Πραγματικότητας</h3>
-        <p class="svc-desc">Μέσα από ένα εξατομικευμένο πρόγραμμα παρέμβασης και θεραπείας, με απόλυτο σεβασμό στον ρυθμό του κάθε ανθρώπου και τις επιθυμίες σας, μπορούμε να δουλέψουμε πάνω σε ένα ευρύ φάσμα ψυχικών και συναισθηματικών δυσκολιών, προσεγγίζοντας τον ψυχισμό ως ένα συνεχές εμπειριών και όχι ως μια αυστηρή διάκριση υγείας και παθολογίας.</p>
+        <p class="svc-desc">Μέσα από ένα εξατομικευμένο πρόγραμμα παρέμβασης και θεραπείας με απόλυτο σεβασμό στο ρυθμό του κάθε ανθρώπου και τις επιθυμίες σας, να δουλέψουμε σε ένα φάσμα ευρύ ψυχικών και συναισθηματικών δυσκολιών, προσεγγίζοντας τον ψυχισμό του κάθε ανθρώπου ως ένα συνεχές εμπειριών και όχι ως μια αυστηρή διάκριση υγείας και παθολογίας.</p>
         <div class="svc-meta">Κλινική Πράξη</div>
       </div>
       
