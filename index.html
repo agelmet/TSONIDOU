@@ -72,8 +72,8 @@
   #loader.done{opacity:0;visibility:hidden;transform:scale(1.02);}
   
   .logo-wrapper {
-    width: 220px;
-    height: 220px;
+    width: 300px;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,12 +84,16 @@
     overflow: hidden;
   }
   .nav-logo-wrapper {
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s;
+    transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s, width 0.6s var(--ease-out-expo), height 0.6s var(--ease-out-expo);
+  }
+  header.scrolled .nav-logo-wrapper {
+    width: 75px;
+    height: 75px;
   }
   .brand:hover .nav-logo-wrapper {
     transform: translateY(-2px) scale(1.05);
@@ -641,7 +645,7 @@
 <!-- ===== LOADER ===== -->
 <div id="loader" aria-hidden="true">
   <div class="logo-wrapper">
-    <img src="https://raw.githubusercontent.com/agelmet/TSONIDOU/refs/heads/main/Gemini_Generated_Image_nbw4p3nbw4p3nbw4.png" alt="Λογότυπο Ραφαέλα Τσονίδου">
+    <img src="https://github.com/agelmet/TSONIDOU/blob/main/Gemini_Generated_Image_d43g2qd43g2qd43g-2.png?raw=true" alt="Λογότυπο Ραφαέλα Τσονίδου">
   </div>
 </div>
 
@@ -650,7 +654,7 @@
   <div class="container nav-inner">
     <a href="#top" class="brand" aria-label="Ραφαέλα Τσονίδου — Αρχική">
       <div class="nav-logo-wrapper" aria-hidden="true">
-        <img src="https://raw.githubusercontent.com/agelmet/TSONIDOU/refs/heads/main/Gemini_Generated_Image_nbw4p3nbw4p3nbw4.png" alt="Λογότυπο">
+        <img src="https://github.com/agelmet/TSONIDOU/blob/main/Gemini_Generated_Image_d43g2qd43g2qd43g-2.png?raw=true" alt="Λογότυπο">
       </div>
     </a>
     <nav aria-label="Κύρια πλοήγηση">
